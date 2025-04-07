@@ -9,7 +9,7 @@ const PhotoboothOptionsPage = ({
 }: PhotoboothFormProps) => {
   return (
     <div className="flex gap-4">
-      <Webcam mirrored />
+      <Webcam mirrored disablePictureInPicture />
       <PhotoboothForm
         layout={layout}
         handleLayoutChange={handleLayoutChange}
