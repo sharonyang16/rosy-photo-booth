@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import html2canvas from "html2canvas-pro";
 
-export const useDecorate = () => {
+export const useCustomize = () => {
   const [backgroundColor, setBackgroundColor] = useState("sky");
   const downloadableImageRef = useRef<HTMLDivElement>({} as HTMLDivElement);
 

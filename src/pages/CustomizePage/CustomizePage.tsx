@@ -1,4 +1,4 @@
-import { useDecorate } from "@/hooks/useDecorate";
+import { useCustomize } from "@/hooks/useCustomize";
 import { BACKGROUND_COLORS } from "@/types/constants";
 
 type CustomizePageProps = {
@@ -10,7 +10,7 @@ const CustomizePage = ({ selectedPictures }: CustomizePageProps) => {
     setBackgroundColor,
     downloadableImageRef,
     handleDownloadImage,
-  } = useDecorate();
+  } = useCustomize();
   return (
     <div className="flex">
       <div className="flex flex-col w-fit">
