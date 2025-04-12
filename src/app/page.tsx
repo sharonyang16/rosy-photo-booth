@@ -1,9 +1,9 @@
 "use client";
 import { usePhotobooth } from "@/hooks/usePhotobooth";
-import CapturePage from "@/pages/CapturePage/CapturePage";
-import OptionsPage from "@/pages/OptionsPage/OptionsPage";
-import SelectPage from "@/pages/SelectPage/SelectPage";
-import CustomizePage from "@/pages/CustomizePage/CustomizePage";
+import CapturePage from "@/components/pages/CapturePage/CapturePage";
+import OptionsPage from "@/components/pages/OptionsPage/OptionsPage";
+import SelectPage from "@/components/pages/SelectPage/SelectPage";
+import CustomizePage from "@/components/pages/CustomizePage/CustomizePage";
 
 const Photobooth = () => {
   const {

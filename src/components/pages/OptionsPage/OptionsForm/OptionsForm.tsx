@@ -1,4 +1,4 @@
-import { PhotoboothFormProps } from "../../../types/photobooth";
+import { PhotoboothFormProps } from "../../../../types/photobooth";
 
 const OptionsForm = ({
   layout,
