@@ -1,5 +1,5 @@
-import Header from "./header";
-import Footer from "./footer";
+import Header from "./Header/Header";
+import Footer from "./Footer/Footer";
 
 const Layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
