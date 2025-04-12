@@ -5,6 +5,7 @@ const OptionsForm = ({
   handleLayoutChange,
   countdown,
   handleCountdownChange,
+  setPhotoboothState,
 }: PhotoboothFormProps) => {
   return (
     <form className="flex flex-col">
@@ -38,7 +39,9 @@ const OptionsForm = ({
           onChange={(e) => handleCountdownChange(e)}
         />
       </fieldset>
-      <button type="submit">start</button>
+      <button type="submit" onClick={() => setPhotoboothState("CAPTURE")}>
+        start
+      </button>
     </form>
   );
 };
