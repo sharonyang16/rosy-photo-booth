@@ -1,6 +1,6 @@
-import { PhotoboothFormProps } from "../../../../types/photobooth";
+import { PhotoboothFormProps } from "../../../types/photobooth";
 
-export const PhotoboothForm = ({
+const OptionsForm = ({
   layout,
   handleLayoutChange,
   countdown,
@@ -42,3 +42,5 @@ export const PhotoboothForm = ({
     </form>
   );
 };
+
+export default OptionsForm;

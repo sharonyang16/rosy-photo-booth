@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Nunito, Nunito_Sans } from "next/font/google";
 import "./globals.css";
-import Layout from "@/components/layout";
+import Layout from "@/components/Layout/Layout";
 
 const nunito = Nunito({
   variable: "--font-nunito",

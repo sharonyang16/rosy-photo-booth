@@ -1,7 +1,7 @@
 import Webcam from "react-webcam";
-import { PhotoboothForm } from "./photoboothForm";
-import { PhotoboothFormProps } from "../../../types/photobooth";
-const PhotoboothOptionsPage = ({
+import OptionsForm from "./OptionsForm.tsx/OptionsForm";
+import { PhotoboothFormProps } from "../../types/photobooth";
+const OptionsPage = ({
   layout,
   handleLayoutChange,
   countdown,
@@ -10,7 +10,7 @@ const PhotoboothOptionsPage = ({
   return (
     <div className="flex gap-4">
       <Webcam mirrored disablePictureInPicture />
-      <PhotoboothForm
+      <OptionsForm
         layout={layout}
         handleLayoutChange={handleLayoutChange}
         countdown={countdown}
@@ -20,4 +20,4 @@ const PhotoboothOptionsPage = ({
   );
 };
 
-export default PhotoboothOptionsPage;
+export default OptionsPage;
