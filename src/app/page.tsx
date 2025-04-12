@@ -1,10 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { usePhotobooth } from "@/hooks/usePhotobooth";
+import CapturePage from "@/pages/CapturePage/CapturePage";
 import OptionsPage from "@/pages/OptionsPage/OptionsPage";
+import SelectPage from "@/pages/SelectPage/SelectPage";
 
 const Photobooth = () => {
   const {
+    webcamRef,
     photoboothState,
     setPhotoboothState,
     layout,
@@ -12,9 +15,7 @@ const Photobooth = () => {
     countdown,
     handleCountdownChange,
     currentCountdown,
-    setCurrentCountdown,
     pictures,
-    setPictures,
     selectedPictures,
     setSelectedPictures,
   } = usePhotobooth();
@@ -23,17 +24,25 @@ const Photobooth = () => {
     case "OPTIONS":
       return (
         <OptionsPage
+          webcamRef={webcamRef}
           layout={layout}
           handleLayoutChange={handleLayoutChange}
           countdown={countdown}
           handleCountdownChange={handleCountdownChange}
+          setPhotoboothState={setPhotoboothState}
         />
       );
     case "CAPTURE":
-      return <></>;
+      return (
+        <CapturePage
+          webcamRef={webcamRef}
+          currentCountdown={currentCountdown}
+          pictures={pictures}
+        />
+      );
     case "SELECT":
-      return <></>;
-    case "DONE":
+      return <SelectPage pictures={pictures} />;
+    case "CUSTOMIZE":
       return <></>;
     default:
       return <></>;
