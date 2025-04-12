@@ -1,6 +1,6 @@
 import { PhotoboothState } from "@/types/photobooth";
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
-import StripLayout from "./StripLayout.tsx/StripLayout";
+import StripLayout from "./StripLayout/StripLayout";
 import DraggableImage from "./DraggableImage";
 
 type SelectPageProps = {
