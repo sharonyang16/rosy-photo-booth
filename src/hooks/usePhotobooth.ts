@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import Webcam from "react-webcam";
 import { PhotoboothState, Layout } from "../types/photobooth";
 import { PICTURE_COUNT } from "@/types/constants";
+import { DragEndEvent } from "@dnd-kit/core";
 
 /**
- *
+ * TODO: write JSDoc Comment
  * @returns
  */
 export const usePhotobooth = () => {
@@ -15,7 +16,9 @@ export const usePhotobooth = () => {
   const [countdown, setCountdown] = useState<number>(3);
   const [currentCountdown, setCurrentCountdown] = useState<number>(3);
   const [pictures, setPictures] = useState<string[]>([]);
-  const [selectedPictures, setSelectedPictures] = useState<string[]>([]);
+  const [selectedPictures, setSelectedPictures] = useState<string[]>(
+    Array(PICTURE_COUNT).fill("")
+  );
 
   const capture = React.useCallback(() => {
     return webcamRef.current?.getScreenshot();
@@ -61,6 +64,21 @@ export const usePhotobooth = () => {
     }
   };
 
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+
+    if (over) {
+      const capturedPictureId = active.id as string;
+      const selectedSlot = over.id as number;
+
+      setSelectedPictures((prev) => {
+        const newSelectedPictures = [...prev];
+        newSelectedPictures[selectedSlot] = capturedPictureId;
+        return newSelectedPictures;
+      });
+    }
+  };
+
   return {
     webcamRef,
     photoboothState,
@@ -72,6 +90,6 @@ export const usePhotobooth = () => {
     currentCountdown,
     pictures,
     selectedPictures,
-    setSelectedPictures,
+    handleDragEnd,
   };
 };

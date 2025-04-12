@@ -17,7 +17,7 @@ const Photobooth = () => {
     currentCountdown,
     pictures,
     selectedPictures,
-    setSelectedPictures,
+    handleDragEnd,
   } = usePhotobooth();
 
   switch (photoboothState) {
@@ -41,7 +41,14 @@ const Photobooth = () => {
         />
       );
     case "SELECT":
-      return <SelectPage pictures={pictures} />;
+      return (
+        <SelectPage
+          pictures={pictures}
+          selectedPictures={selectedPictures}
+          setPhotoboothState={setPhotoboothState}
+          handleDragEnd={handleDragEnd}
+        />
+      );
     case "CUSTOMIZE":
       return <></>;
     default:

@@ -1,5 +1,5 @@
 import Webcam from "react-webcam";
-import OptionsForm from "./OptionsForm.tsx/OptionsForm";
+import OptionsForm from "./OptionsForm/OptionsForm";
 import { PhotoboothFormProps } from "../../types/photobooth";
 const OptionsPage = ({
   webcamRef,
