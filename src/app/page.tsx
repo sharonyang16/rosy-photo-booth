@@ -3,6 +3,7 @@ import { usePhotobooth } from "@/hooks/usePhotobooth";
 import CapturePage from "@/pages/CapturePage/CapturePage";
 import OptionsPage from "@/pages/OptionsPage/OptionsPage";
 import SelectPage from "@/pages/SelectPage/SelectPage";
+import CustomizePage from "@/pages/CustomizePage/CustomizePage";
 
 const Photobooth = () => {
   const {
@@ -49,7 +50,7 @@ const Photobooth = () => {
         />
       );
     case "CUSTOMIZE":
-      return <></>;
+      return <CustomizePage selectedPictures={selectedPictures} />;
     default:
       return <></>;
   }
