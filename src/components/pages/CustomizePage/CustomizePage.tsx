@@ -1,5 +1,10 @@
 import { useCustomize } from "@/hooks/useCustomize";
-import { BACKGROUND_COLORS } from "@/types/constants";
+import {
+  BACKGROUND_COLORS,
+  backgroundColorToClass,
+  FILTERS,
+  filterToClass,
+} from "@/types/constants";
 
 type CustomizePageProps = {
   selectedPictures: string[];
@@ -8,6 +13,8 @@ const CustomizePage = ({ selectedPictures }: CustomizePageProps) => {
   const {
     backgroundColor,
     setBackgroundColor,
+    filter,
+    setFilter,
     downloadableImageRef,
     handleDownloadImage,
   } = useCustomize();
@@ -16,12 +23,14 @@ const CustomizePage = ({ selectedPictures }: CustomizePageProps) => {
       <div className="flex flex-col w-fit">
         <div
           ref={downloadableImageRef}
-          className={`flex flex-col w-min gap-3 bg-${backgroundColor}-500 px-3 py-7`}
+          className={`flex flex-col w-min gap-3 ${backgroundColorToClass.get(
+            backgroundColor
+          )} px-3 py-7`}
         >
           {selectedPictures.map((picture, index) => (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              className="min-w-[160px]"
+              className={`min-w-[160px] ${filterToClass.get(filter)}`}
               key={index}
               src={picture}
               alt="picture"
@@ -46,6 +55,19 @@ const CustomizePage = ({ selectedPictures }: CustomizePageProps) => {
                 onChange={(e) => setBackgroundColor(e.target.value)}
               />
               {color}
+            </label>
+          ))}
+        </fieldset>
+        <fieldset>
+          {FILTERS.map((filterName) => (
+            <label key={filterName}>
+              <input
+                type="radio"
+                value={filterName}
+                checked={filter === filterName}
+                onChange={(e) => setFilter(e.target.value)}
+              />
+              {filterName}
             </label>
           ))}
         </fieldset>
