@@ -5,7 +5,7 @@ import { PICTURE_COUNT } from "@/types/constants";
 import { DragEndEvent } from "@dnd-kit/core";
 
 /**
- *
+ * TODO: write JSDoc Comment
  * @returns
  */
 export const usePhotobooth = () => {
@@ -90,7 +90,6 @@ export const usePhotobooth = () => {
     currentCountdown,
     pictures,
     selectedPictures,
-    setSelectedPictures,
     handleDragEnd,
   };
 };

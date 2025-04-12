@@ -11,8 +11,8 @@ type SelectPageProps = {
 };
 const SelectPage = ({
   pictures,
-  setPhotoboothState,
   selectedPictures,
+  setPhotoboothState,
   handleDragEnd,
 }: SelectPageProps) => {
   return (
