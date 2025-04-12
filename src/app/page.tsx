@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { usePhotobooth } from "@/hooks/usePhotobooth";
 import CapturePage from "@/pages/CapturePage/CapturePage";
