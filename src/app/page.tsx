@@ -16,7 +16,6 @@ const Photobooth = () => {
     handleCountdownChange,
     currentCountdown,
     pictures,
-    setPictures,
     selectedPictures,
     setSelectedPictures,
   } = usePhotobooth();

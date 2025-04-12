@@ -71,7 +71,6 @@ export const usePhotobooth = () => {
     handleCountdownChange,
     currentCountdown,
     pictures,
-    setPictures,
     selectedPictures,
     setSelectedPictures,
   };
