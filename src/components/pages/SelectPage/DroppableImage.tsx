@@ -3,18 +3,22 @@ import { useDroppable } from "@dnd-kit/core";
 type DroppableImageProps = {
   id: string;
   src: string;
+  className?: string;
 };
-const DroppableImage = ({ id, src }: DroppableImageProps) => {
+const DroppableImage = ({ id, src, className }: DroppableImageProps) => {
   const { setNodeRef } = useDroppable({
     id: id,
   });
   return (
-    <div className="h-full" ref={setNodeRef}>
+    <div
+      className={`flex justify-center items-center bg-gray-500 ${className}`}
+      ref={setNodeRef}
+    >
       {src ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={src} className="h-120 w-160" alt="droppable image" />
+        <img src={src} alt="droppable image" />
       ) : (
-        <div className="h-120 w-160 bg-amber-200"> No Image</div>
+        <div>No Image Selected</div>
       )}
     </div>
   );
