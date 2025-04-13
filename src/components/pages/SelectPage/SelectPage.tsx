@@ -40,10 +40,13 @@ const SelectPage = ({
             done
           </button>
         </div>
-        <div>
-          {pictures.map((picture, index) => (
-            <DraggableImage key={index} src={picture} />
-          ))}
+        <div className="flex flex-col">
+          <h4>Drag and Drop</h4>
+          <div className="grid grid-cols-2 gap-8">
+            {pictures.map((picture, index) => (
+              <DraggableImage key={index} src={picture} />
+            ))}
+          </div>
         </div>
       </div>
     </DndContext>

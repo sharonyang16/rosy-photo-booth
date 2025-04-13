@@ -11,7 +11,7 @@ const DraggableImage = ({ src }: DraggableImageProps) => {
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      className="w-1/4"
+      className="min-w-[160px] w-[160px]"
       ref={setNodeRef}
       {...attributes}
       {...listeners}
