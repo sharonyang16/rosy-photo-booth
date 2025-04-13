@@ -43,6 +43,7 @@ const Photobooth = () => {
     case "SELECT":
       return (
         <SelectPage
+          layout={layout}
           pictures={pictures}
           selectedPictures={selectedPictures}
           setPhotoboothState={setPhotoboothState}
@@ -50,7 +51,9 @@ const Photobooth = () => {
         />
       );
     case "CUSTOMIZE":
-      return <CustomizePage selectedPictures={selectedPictures} />;
+      return (
+        <CustomizePage layout={layout} selectedPictures={selectedPictures} />
+      );
     default:
       return <></>;
   }

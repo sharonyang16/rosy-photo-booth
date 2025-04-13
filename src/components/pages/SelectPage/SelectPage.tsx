@@ -1,15 +1,19 @@
-import { PhotoboothState } from "@/types/photobooth";
+import { Layout, PhotoboothState } from "@/types/photobooth";
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
-import StripLayout from "./StripLayout/StripLayout";
 import DraggableImage from "./DraggableImage";
+import DroppableImage from "./DroppableImage";
+import StripLayout from "@/components/StripLayout";
+import { layoutToImgClass } from "@/types/constants";
 
 type SelectPageProps = {
+  layout: Layout;
   pictures: string[];
   selectedPictures: string[];
   setPhotoboothState: React.Dispatch<React.SetStateAction<PhotoboothState>>;
   handleDragEnd: (event: DragEndEvent) => void;
 };
 const SelectPage = ({
+  layout,
   pictures,
   selectedPictures,
   setPhotoboothState,
@@ -19,7 +23,16 @@ const SelectPage = ({
     <DndContext onDragEnd={handleDragEnd}>
       <div className="flex">
         <div>
-          <StripLayout selectedPictures={selectedPictures} />
+          <StripLayout layout={layout}>
+            {selectedPictures.map((picture, index) => (
+              <DroppableImage
+                key={`droppable-slot-${index}`}
+                id={index.toString()}
+                src={picture}
+                className={layoutToImgClass.get(layout)}
+              />
+            ))}
+          </StripLayout>
           <button
             disabled={selectedPictures.some((picture) => !picture)}
             onClick={() => setPhotoboothState("CUSTOMIZE")}

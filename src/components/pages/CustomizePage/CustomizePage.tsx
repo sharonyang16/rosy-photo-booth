@@ -1,15 +1,19 @@
+import StripLayout from "@/components/StripLayout";
 import { useCustomize } from "@/hooks/useCustomize";
 import {
   BACKGROUND_COLORS,
   backgroundColorToClass,
   FILTERS,
   filterToClass,
+  layoutToImgClass,
 } from "@/types/constants";
+import { Layout } from "@/types/photobooth";
 
 type CustomizePageProps = {
+  layout: Layout;
   selectedPictures: string[];
 };
-const CustomizePage = ({ selectedPictures }: CustomizePageProps) => {
+const CustomizePage = ({ layout, selectedPictures }: CustomizePageProps) => {
   const {
     backgroundColor,
     setBackgroundColor,
@@ -21,22 +25,23 @@ const CustomizePage = ({ selectedPictures }: CustomizePageProps) => {
   return (
     <div className="flex">
       <div className="flex flex-col w-fit">
-        <div
+        <StripLayout
           ref={downloadableImageRef}
-          className={`flex flex-col w-min gap-3 ${backgroundColorToClass.get(
-            backgroundColor
-          )} px-3 py-7`}
+          layout={layout}
+          className={backgroundColorToClass.get(backgroundColor)}
         >
           {selectedPictures.map((picture, index) => (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              className={`min-w-[160px] ${filterToClass.get(filter)}`}
+              className={`${layoutToImgClass.get(layout)} ${filterToClass.get(
+                filter
+              )}`}
               key={index}
               src={picture}
               alt="picture"
             />
           ))}
-        </div>
+        </StripLayout>
         <button
           disabled={Object.keys(downloadableImageRef).length === 0}
           onClick={handleDownloadImage}
