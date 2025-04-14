@@ -8,8 +8,9 @@ const OptionsForm = ({
   setPhotoboothState,
 }: PhotoboothFormProps) => {
   return (
-    <form className="flex flex-col">
+    <form className="flex flex-col gap-4">
       <fieldset>
+        <p>layout</p>
         <label>
           <input
             type="radio"
@@ -31,13 +32,17 @@ const OptionsForm = ({
       </fieldset>
 
       <fieldset>
-        <input
-          type="number"
-          min="1"
-          max="10"
-          value={countdown}
-          onChange={(e) => handleCountdownChange(e)}
-        />
+        <p>countdown</p>
+        <div className="flex gap-2">
+          <input
+            type="number"
+            min="1"
+            max="10"
+            value={countdown}
+            onChange={(e) => handleCountdownChange(e)}
+          />
+          <p>seconds</p>
+        </div>
       </fieldset>
       <button type="submit" onClick={() => setPhotoboothState("CAPTURE")}>
         start
