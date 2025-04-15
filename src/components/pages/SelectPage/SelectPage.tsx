@@ -21,31 +21,35 @@ const SelectPage = ({
 }: SelectPageProps) => {
   return (
     <DndContext onDragEnd={handleDragEnd}>
-      <div className="flex">
-        <div>
-          <StripLayout layout={layout}>
-            {selectedPictures.map((picture, index) => (
-              <DroppableImage
-                key={`droppable-slot-${index}`}
-                id={index.toString()}
-                src={picture}
-                className={layoutToImgClass.get(layout)}
-              />
-            ))}
-          </StripLayout>
-          <button
-            disabled={selectedPictures.some((picture) => !picture)}
-            onClick={() => setPhotoboothState("CUSTOMIZE")}
-          >
-            done
-          </button>
-        </div>
-        <div className="flex flex-col">
-          <h4>Drag and Drop</h4>
-          <div className="grid grid-cols-2 gap-8">
-            {pictures.map((picture, index) => (
-              <DraggableImage key={index} src={picture} />
-            ))}
+      <div className="w-full">
+        <h2 className="text-center">Choose your pictures</h2>
+        <div className="flex justify-center items-center gap-16">
+          <div>
+            <StripLayout layout={layout}>
+              {selectedPictures.map((picture, index) => (
+                <DroppableImage
+                  key={`droppable-slot-${index}`}
+                  id={index.toString()}
+                  src={picture}
+                  className={layoutToImgClass.get(layout)}
+                />
+              ))}
+            </StripLayout>
+            <button
+              disabled={selectedPictures.some((picture) => !picture)}
+              onClick={() => setPhotoboothState("CUSTOMIZE")}
+            >
+              done
+            </button>
+          </div>
+          <div className="flex flex-col">
+            <>
+              <div className="grid grid-cols-4 gap-8">
+                {pictures.map((picture, index) => (
+                  <DraggableImage key={index} src={picture} />
+                ))}
+              </div>
+            </>
           </div>
         </div>
       </div>

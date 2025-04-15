@@ -68,12 +68,12 @@ export const usePhotobooth = () => {
     const { active, over } = event;
 
     if (over) {
-      const capturedPictureId = active.id as string;
+      const capturedPictureSrc = active.id as string;
       const selectedSlot = over.id as number;
 
       setSelectedPictures((prev) => {
         const newSelectedPictures = [...prev];
-        newSelectedPictures[selectedSlot] = capturedPictureId;
+        newSelectedPictures[selectedSlot] = capturedPictureSrc;
         return newSelectedPictures;
       });
     }

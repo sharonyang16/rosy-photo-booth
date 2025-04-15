@@ -14,7 +14,10 @@ const StripLayout = ({
   ...props
 }: StripLayoutProps & ComponentProps<ElementType>) => {
   return (
-    <div {...props} className={`${layoutToClass.get(layout)} ${className}`}>
+    <div
+      {...props}
+      className={`${layoutToClass.get(layout)} ${className} shadow-2xl`}
+    >
       {children}
     </div>
   );

@@ -6,19 +6,21 @@ type DroppableImageProps = {
   className?: string;
 };
 const DroppableImage = ({ id, src, className }: DroppableImageProps) => {
-  const { setNodeRef } = useDroppable({
+  const { isOver, setNodeRef } = useDroppable({
     id: id,
   });
   return (
     <div
-      className={`flex justify-center items-center bg-gray-500 ${className}`}
+      className={`flex justify-center items-center  ${className} ${
+        isOver ? "bg-gray-400" : "bg-gray-500"
+      }`}
       ref={setNodeRef}
     >
       {src ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={src} alt="droppable image" />
       ) : (
-        <div>No Image Selected</div>
+        <div>{isOver ? "Drop Here!" : "No Image Selected"}</div>
       )}
     </div>
   );
