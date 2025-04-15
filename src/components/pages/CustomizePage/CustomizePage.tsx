@@ -1,3 +1,4 @@
+import RadioButton from "@/components/base/RadioButton";
 import StripLayout from "@/components/StripLayout";
 import { useCustomize } from "@/hooks/useCustomize";
 import {
@@ -52,28 +53,24 @@ const CustomizePage = ({ layout, selectedPictures }: CustomizePageProps) => {
       <form className="flex flex-col">
         <fieldset>
           {BACKGROUND_COLORS.map((color) => (
-            <label key={color}>
-              <input
-                type="radio"
-                value={color}
-                checked={backgroundColor === color}
-                onChange={(e) => setBackgroundColor(e.target.value)}
-              />
-              {color}
-            </label>
+            <RadioButton
+              key={color}
+              label={color}
+              value={color}
+              checked={backgroundColor === color}
+              onChange={(e) => setBackgroundColor(e.target.value)}
+            />
           ))}
         </fieldset>
         <fieldset>
           {FILTERS.map((filterName) => (
-            <label key={filterName}>
-              <input
-                type="radio"
-                value={filterName}
-                checked={filter === filterName}
-                onChange={(e) => setFilter(e.target.value)}
-              />
-              {filterName}
-            </label>
+            <RadioButton
+              key={filterName}
+              label={filterName}
+              value={filterName}
+              checked={filter === filterName}
+              onChange={(e) => setFilter(e.target.value)}
+            />
           ))}
         </fieldset>
       </form>

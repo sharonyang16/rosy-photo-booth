@@ -1,4 +1,6 @@
+import { LAYOUTS } from "@/types/constants";
 import { PhotoboothFormProps } from "../../../../types/photobooth";
+import RadioButton from "@/components/base/RadioButton";
 
 const OptionsForm = ({
   layout,
@@ -11,24 +13,15 @@ const OptionsForm = ({
     <form className="flex flex-col gap-4">
       <fieldset>
         <p>layout</p>
-        <label>
-          <input
-            type="radio"
-            value="STRIP"
-            checked={layout === "STRIP"}
+        {LAYOUTS.map((layoutName) => (
+          <RadioButton
+            key={layoutName}
+            label={layoutName.toLowerCase()}
+            value={layoutName}
+            checked={layout === layoutName}
             onChange={(e) => handleLayoutChange(e)}
           />
-          strip
-        </label>
-        <label>
-          <input
-            type="radio"
-            value="SQUARE"
-            checked={layout === "SQUARE"}
-            onChange={(e) => handleLayoutChange(e)}
-          />
-          square
-        </label>
+        ))}
       </fieldset>
 
       <fieldset>

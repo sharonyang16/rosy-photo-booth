@@ -12,6 +12,8 @@ export const layoutToImgClass = new Map<Layout, string>([
 
 export const PICTURE_COUNT = 4;
 
+export const LAYOUTS = ["STRIP", "SQUARE"];
+
 export const BACKGROUND_COLORS = ["sky", "yellow", "pink"];
 
 export const backgroundColorToClass = new Map<string, string>([
