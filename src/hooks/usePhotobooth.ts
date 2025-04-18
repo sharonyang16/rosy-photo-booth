@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Webcam from "react-webcam";
 import { PhotoboothState, Layout } from "../types/photobooth";
-import { PICTURE_COUNT } from "@/types/constants";
+import { orientationToClass, PICTURE_COUNT } from "@/types/constants";
 import { DragEndEvent } from "@dnd-kit/core";
 
 /**
@@ -13,6 +13,10 @@ export const usePhotobooth = () => {
   const [photoboothState, setPhotoboothState] =
     useState<PhotoboothState>("OPTIONS");
   const [orientation, setOrientation] = useState<string>("landscape");
+  const [pictureSize, setPictureSize] = useState<{
+    height: number;
+    width: number;
+  }>({ height: 0, width: 0 });
   const [layout, setLayout] = useState<Layout>("STRIP");
   const [countdown, setCountdown] = useState<number>(3);
   const [currentCountdown, setCurrentCountdown] = useState<number>(3);
@@ -53,6 +57,17 @@ export const usePhotobooth = () => {
     }
   }, [capture, countdown, currentCountdown, photoboothState, pictures]);
 
+  useEffect(() => {
+    const size = orientationToClass.get(orientation) || {
+      height: 0,
+      width: 0,
+    };
+    setPictureSize({
+      height: size.height / 2,
+      width: size.width / 2,
+    });
+  }, [orientation]);
+
   const handleOrientationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOrientation(e.target.value);
   };
@@ -90,6 +105,7 @@ export const usePhotobooth = () => {
     setPhotoboothState,
     orientation,
     handleOrientationChange,
+    pictureSize,
     layout,
     handleLayoutChange,
     countdown,

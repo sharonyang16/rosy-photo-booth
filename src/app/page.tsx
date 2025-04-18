@@ -12,6 +12,7 @@ const Photobooth = () => {
     setPhotoboothState,
     orientation,
     handleOrientationChange,
+    pictureSize,
     layout,
     handleLayoutChange,
     countdown,
@@ -40,6 +41,7 @@ const Photobooth = () => {
       return (
         <CapturePage
           webcamRef={webcamRef}
+          orientation={orientation}
           currentCountdown={currentCountdown}
           pictures={pictures}
         />
@@ -48,6 +50,7 @@ const Photobooth = () => {
       return (
         <SelectPage
           layout={layout}
+          pictureSize={pictureSize}
           pictures={pictures}
           selectedPictures={selectedPictures}
           setPhotoboothState={setPhotoboothState}
@@ -56,7 +59,11 @@ const Photobooth = () => {
       );
     case "CUSTOMIZE":
       return (
-        <CustomizePage layout={layout} selectedPictures={selectedPictures} />
+        <CustomizePage
+          layout={layout}
+          pictureSize={pictureSize}
+          selectedPictures={selectedPictures}
+        />
       );
     default:
       return <></>;

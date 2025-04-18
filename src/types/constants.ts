@@ -5,11 +5,6 @@ export const layoutToClass = new Map<Layout, string>([
   ["SQUARE", "grid grid-cols-2 gap-3 px-3 pb-3 pt-10 bg-white"],
 ]);
 
-export const layoutToImgClass = new Map<Layout, string>([
-  ["STRIP", "min-w-[160px] max-w-[160px] min-h-[120px]"],
-  ["SQUARE", "min-w-[160px] max-w-[160px] min-h-[120px]"],
-]);
-
 export const PICTURE_COUNT = 4;
 
 export const LAYOUTS = ["STRIP", "SQUARE"];

@@ -8,15 +8,20 @@ import {
   backgroundColorToClass,
   FILTERS,
   filterToClass,
-  layoutToImgClass,
 } from "@/types/constants";
 import { Layout } from "@/types/photobooth";
 
 type CustomizePageProps = {
   layout: Layout;
   selectedPictures: string[];
+  pictureSize: { height: number; width: number };
 };
-const CustomizePage = ({ layout, selectedPictures }: CustomizePageProps) => {
+
+const CustomizePage = ({
+  layout,
+  selectedPictures,
+  pictureSize: size,
+}: CustomizePageProps) => {
   const {
     backgroundColor,
     setBackgroundColor,
@@ -25,6 +30,7 @@ const CustomizePage = ({ layout, selectedPictures }: CustomizePageProps) => {
     downloadableImageRef,
     handleDownloadImage,
   } = useCustomize();
+
   return (
     <PageLayout pageHeading="Customize">
       <div className="flex gap-8">
@@ -35,15 +41,15 @@ const CustomizePage = ({ layout, selectedPictures }: CustomizePageProps) => {
             className={backgroundColorToClass.get(backgroundColor)}
           >
             {selectedPictures.map((picture, index) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                className={`${layoutToImgClass.get(layout)} ${filterToClass.get(
-                  filter
-                )}`}
-                key={index}
-                src={picture}
-                alt="picture"
-              />
+              <div key={index} style={size}>
+                {/* eslint-disable-next-line @next/next/no-img-element*/}
+                <img
+                  style={{ ...size, objectFit: "cover" }}
+                  className={`${filterToClass.get(filter)}`}
+                  src={picture}
+                  alt="picture"
+                />
+              </div>
             ))}
           </StripLayout>
           <button
