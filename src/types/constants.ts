@@ -34,8 +34,8 @@ export const ORIENTATIONS = ["landscape", "portrait"];
 
 export const orientationToClass = new Map<
   string,
-  { height: string; width: string }
+  { height: number; width: number }
 >([
-  ["landscape", { height: "h-[160px]", width: "w-[120px]" }],
-  ["portrait", { height: "h-[120px]", width: "w-[160px]" }],
+  ["landscape", { height: 300, width: 400 }],
+  ["portrait", { height: 400, width: 300 }],
 ]);

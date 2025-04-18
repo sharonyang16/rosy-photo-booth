@@ -1,9 +1,11 @@
-import { LAYOUTS } from "@/types/constants";
+import { LAYOUTS, ORIENTATIONS } from "@/types/constants";
 import { PhotoboothFormProps } from "../../../../types/photobooth";
 import RadioButton from "@/components/base/RadioButton";
 import Typography from "@/components/base/Typography";
 
 const OptionsForm = ({
+  orientation,
+  handleOrientationChange,
   layout,
   handleLayoutChange,
   countdown,
@@ -12,6 +14,20 @@ const OptionsForm = ({
 }: PhotoboothFormProps) => {
   return (
     <form className="flex flex-col gap-4">
+      <fieldset>
+        <Typography variant="label" as="label">
+          orientation
+        </Typography>
+        {ORIENTATIONS.map((orientationName) => (
+          <RadioButton
+            key={orientationName}
+            label={orientationName.toLowerCase()}
+            value={orientationName}
+            checked={orientation === orientationName}
+            onChange={(e) => handleOrientationChange(e)}
+          />
+        ))}
+      </fieldset>
       <fieldset>
         <Typography variant="label" as="label">
           layout

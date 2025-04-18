@@ -2,26 +2,19 @@ import Webcam from "react-webcam";
 
 type CameraProps = {
   ref: React.RefObject<Webcam>;
-  isWebcamOn: boolean;
-  handleUserMedia: () => void;
+  size: { height: number; width: number };
   mirrored: boolean;
+  orientation: string;
 };
-const Camera = ({
-  ref,
-  isWebcamOn,
-  handleUserMedia,
-  mirrored,
-}: CameraProps) => {
+const Camera = ({ ref, size, mirrored }: CameraProps) => {
   return (
-    <>
-      {!isWebcamOn && <div>camera not mounted</div>}
-      <Webcam
-        ref={ref}
-        onUserMedia={handleUserMedia}
-        mirrored={mirrored}
-        disablePictureInPicture
-      />
-    </>
+    <Webcam
+      ref={ref}
+      style={{ ...size, objectFit: "cover" }}
+      className="border-4 border-black rounded-lg"
+      mirrored={mirrored}
+      disablePictureInPicture
+    />
   );
 };
 
