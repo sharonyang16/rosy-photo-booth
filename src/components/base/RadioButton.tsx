@@ -1,3 +1,5 @@
+import Typography from "./Typography";
+
 type RadioButtonProps = {
   label: string;
   value: string;
@@ -6,9 +8,9 @@ type RadioButtonProps = {
 };
 const RadioButton = ({ label, value, checked, onChange }: RadioButtonProps) => {
   return (
-    <label>
+    <label className="flex items-center gap-2">
       <input type="radio" value={value} checked={checked} onChange={onChange} />
-      {label}
+      <Typography>{label}</Typography>
     </label>
   );
 };
