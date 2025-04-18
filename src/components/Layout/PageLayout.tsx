@@ -4,6 +4,7 @@ type PageLayoutProps = {
   pageHeading: string;
   children: React.ReactNode;
 };
+
 const PageLayout = ({ pageHeading, children }: PageLayoutProps) => {
   return (
     <div className="flex flex-col gap-4">

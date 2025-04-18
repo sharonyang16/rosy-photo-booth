@@ -6,6 +6,7 @@ type RadioButtonProps = {
   checked: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
+
 const RadioButton = ({ label, value, checked, onChange }: RadioButtonProps) => {
   return (
     <label className="flex items-center gap-2">

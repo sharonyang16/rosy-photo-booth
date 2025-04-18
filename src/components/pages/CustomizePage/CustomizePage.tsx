@@ -1,7 +1,7 @@
 import RadioButton from "@/components/base/RadioButton";
 import Typography from "@/components/base/Typography";
 import PageLayout from "@/components/Layout/PageLayout";
-import StripLayout from "@/components/StripLayout";
+import StripLayout from "@/components/StripLayout/StripLayout";
 import { useCustomize } from "@/hooks/useCustomize";
 import {
   BACKGROUND_COLORS,

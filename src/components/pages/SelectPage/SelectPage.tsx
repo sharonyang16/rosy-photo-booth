@@ -2,7 +2,7 @@ import { Layout, PhotoboothState } from "@/types/photobooth";
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import DraggableImage from "./DraggableImage";
 import DroppableImage from "./DroppableImage";
-import StripLayout from "@/components/StripLayout";
+import StripLayout from "@/components/StripLayout/StripLayout";
 import { layoutToImgClass } from "@/types/constants";
 import PageLayout from "@/components/Layout/PageLayout";
 
