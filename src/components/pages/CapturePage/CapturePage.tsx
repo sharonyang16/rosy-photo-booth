@@ -22,7 +22,7 @@ const CapturePage = ({
             <Typography>{PICTURE_COUNT * 2 - pictures.length}</Typography>
           </div>
 
-          <div className="flex justify-center items-center p-8 bg-gray-400">
+          <div className="flex justify-center items-center p-8 bg-gray-400 size-min">
             <Typography>{currentCountdown}</Typography>
           </div>
         </div>

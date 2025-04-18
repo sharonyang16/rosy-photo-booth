@@ -1,4 +1,5 @@
 import RadioButton from "@/components/base/RadioButton";
+import Typography from "@/components/base/Typography";
 import PageLayout from "@/components/Layout/PageLayout";
 import StripLayout from "@/components/StripLayout";
 import { useCustomize } from "@/hooks/useCustomize";
@@ -26,7 +27,6 @@ const CustomizePage = ({ layout, selectedPictures }: CustomizePageProps) => {
   } = useCustomize();
   return (
     <PageLayout pageHeading="Customize">
-      {" "}
       <div className="flex">
         <div className="flex flex-col w-fit">
           <StripLayout
@@ -55,6 +55,9 @@ const CustomizePage = ({ layout, selectedPictures }: CustomizePageProps) => {
         </div>
         <form className="flex flex-col">
           <fieldset>
+            <Typography variant="label" as="label">
+              background color
+            </Typography>
             {BACKGROUND_COLORS.map((color) => (
               <RadioButton
                 key={color}
@@ -66,6 +69,9 @@ const CustomizePage = ({ layout, selectedPictures }: CustomizePageProps) => {
             ))}
           </fieldset>
           <fieldset>
+            <Typography variant="label" as="label">
+              filters
+            </Typography>
             {FILTERS.map((filterName) => (
               <RadioButton
                 key={filterName}
