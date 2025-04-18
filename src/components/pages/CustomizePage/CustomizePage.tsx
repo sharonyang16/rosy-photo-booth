@@ -1,5 +1,6 @@
 import RadioButton from "@/components/base/RadioButton";
 import Typography from "@/components/base/Typography";
+import CroppedImage from "@/components/CroppedImage/CroppedImage";
 import PageLayout from "@/components/Layout/PageLayout";
 import StripLayout from "@/components/StripLayout/StripLayout";
 import { useCustomize } from "@/hooks/useCustomize";
@@ -46,15 +47,13 @@ const CustomizePage = ({
             className={backgroundColorToClass.get(backgroundColor)}
           >
             {selectedPictures.map((picture, index) => (
-              <div key={index} style={size}>
-                {/* eslint-disable-next-line @next/next/no-img-element*/}
-                <img
-                  style={{ ...size, objectFit: "cover" }}
-                  className={`${filterToClass.get(filter)}`}
-                  src={picture}
-                  alt="picture"
-                />
-              </div>
+              <CroppedImage
+                key={index}
+                src={picture}
+                size={size}
+                alt="picture"
+                className={`${filterToClass.get(filter)}`}
+              />
             ))}
           </StripLayout>
           <button

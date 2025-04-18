@@ -13,9 +13,8 @@ const Camera = ({ ref, size, mirrored }: CameraProps) => {
       style={{ ...size, objectFit: "cover" }}
       className="border-4 border-black rounded-lg"
       mirrored={mirrored}
-      minScreenshotHeight={size.height}
-      minScreenshotWidth={size.width}
       disablePictureInPicture
+      screenshotFormat="image/png"
     />
   );
 };

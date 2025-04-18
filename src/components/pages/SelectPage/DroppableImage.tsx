@@ -1,5 +1,6 @@
 import { useDroppable } from "@dnd-kit/core";
 import Typography from "@/components/base/Typography";
+import CroppedImage from "@/components/CroppedImage/CroppedImage";
 
 type DroppableImageProps = {
   id: string;
@@ -20,12 +21,7 @@ const DroppableImage = ({ id, src, className, size }: DroppableImageProps) => {
       ref={setNodeRef}
     >
       {src ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={src}
-          style={{ ...size, objectFit: "cover" }}
-          alt="droppable image"
-        />
+        <CroppedImage src={src} size={size} alt="dropped picture preview" />
       ) : (
         <Typography>{isOver ? "Drop Here!" : "No Image Selected"}</Typography>
       )}
