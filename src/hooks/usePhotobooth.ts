@@ -64,8 +64,8 @@ export const usePhotobooth = () => {
       width: 0,
     };
     setPictureSize({
-      height: size.height / 2,
-      width: size.width / 2,
+      height: size.height,
+      width: size.width,
     });
   }, [orientation]);
 

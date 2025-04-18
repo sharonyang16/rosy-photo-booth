@@ -31,6 +31,7 @@ const Photobooth = () => {
         <OptionsPage
           webcamRef={webcamRef}
           orientation={orientation}
+          pictureSize={pictureSize}
           mirrored={mirrored}
           handleMirroredChange={handleMirroredChange}
           handleOrientationChange={handleOrientationChange}
@@ -45,7 +46,7 @@ const Photobooth = () => {
       return (
         <CapturePage
           webcamRef={webcamRef}
-          orientation={orientation}
+          pictureSize={pictureSize}
           mirrored={mirrored}
           currentCountdown={currentCountdown}
           pictures={pictures}

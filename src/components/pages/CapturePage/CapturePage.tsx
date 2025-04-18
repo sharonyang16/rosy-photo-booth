@@ -1,34 +1,27 @@
 import Webcam from "react-webcam";
-import { orientationToClass, PICTURE_COUNT } from "@/types/constants";
+import { PICTURE_COUNT } from "@/types/constants";
 import Typography from "@/components/base/Typography";
 import PageLayout from "@/components/Layout/PageLayout";
 import Camera from "@/components/Camera/Camera";
 type CapturePageProps = {
   webcamRef: React.RefObject<Webcam>;
+  pictureSize: { height: number; width: number };
   mirrored: boolean;
-  orientation: string;
   currentCountdown: number;
   pictures: string[];
 };
 
 const CapturePage = ({
   webcamRef,
+  pictureSize: size,
   mirrored,
-  orientation,
   currentCountdown,
   pictures,
 }: CapturePageProps) => {
-  const size = orientationToClass.get(orientation) || { height: 0, width: 0 };
-
   return (
     <PageLayout pageHeading="Capture">
       <div className="flex">
-        <Camera
-          ref={webcamRef}
-          size={size}
-          mirrored={mirrored}
-          orientation={orientation}
-        />
+        <Camera ref={webcamRef} size={size} mirrored={mirrored} />
         <div>
           <div className="flex">
             <Typography variant="label">Pictures Remaining: </Typography>

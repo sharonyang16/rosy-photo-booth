@@ -20,7 +20,7 @@ type CustomizePageProps = {
 const CustomizePage = ({
   layout,
   selectedPictures,
-  pictureSize: size,
+  pictureSize,
 }: CustomizePageProps) => {
   const {
     backgroundColor,
@@ -30,6 +30,11 @@ const CustomizePage = ({
     downloadableImageRef,
     handleDownloadImage,
   } = useCustomize();
+
+  const size = {
+    height: pictureSize.height / 2,
+    width: pictureSize.width / 2,
+  };
 
   return (
     <PageLayout pageHeading="Customize">

@@ -16,12 +16,18 @@ type SelectPageProps = {
 
 const SelectPage = ({
   layout,
-  pictureSize: size,
+  pictureSize,
   pictures,
   selectedPictures,
   setPhotoboothState,
   handleDragEnd,
 }: SelectPageProps) => {
+
+  const size = {
+    height: pictureSize.height / 2,
+    width: pictureSize.width / 2,
+  };
+
   return (
     <PageLayout pageHeading="Choose your pictures">
       <DndContext onDragEnd={handleDragEnd}>

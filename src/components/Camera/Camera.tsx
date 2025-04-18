@@ -4,8 +4,8 @@ type CameraProps = {
   ref: React.RefObject<Webcam>;
   size: { height: number; width: number };
   mirrored: boolean;
-  orientation: string;
 };
+
 const Camera = ({ ref, size, mirrored }: CameraProps) => {
   return (
     <Webcam
