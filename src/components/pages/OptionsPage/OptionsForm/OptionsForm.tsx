@@ -1,4 +1,7 @@
+import { LAYOUTS } from "@/types/constants";
 import { PhotoboothFormProps } from "../../../../types/photobooth";
+import RadioButton from "@/components/base/RadioButton";
+import Typography from "@/components/base/Typography";
 
 const OptionsForm = ({
   layout,
@@ -8,36 +11,36 @@ const OptionsForm = ({
   setPhotoboothState,
 }: PhotoboothFormProps) => {
   return (
-    <form className="flex flex-col">
+    <form className="flex flex-col gap-4">
       <fieldset>
-        <label>
-          <input
-            type="radio"
-            value="STRIP"
-            checked={layout === "STRIP"}
+        <Typography variant="label" as="label">
+          layout
+        </Typography>
+        {LAYOUTS.map((layoutName) => (
+          <RadioButton
+            key={layoutName}
+            label={layoutName.toLowerCase()}
+            value={layoutName}
+            checked={layout === layoutName}
             onChange={(e) => handleLayoutChange(e)}
           />
-          strip
-        </label>
-        <label>
-          <input
-            type="radio"
-            value="SQUARE"
-            checked={layout === "SQUARE"}
-            onChange={(e) => handleLayoutChange(e)}
-          />
-          square
-        </label>
+        ))}
       </fieldset>
 
       <fieldset>
-        <input
-          type="number"
-          min="1"
-          max="10"
-          value={countdown}
-          onChange={(e) => handleCountdownChange(e)}
-        />
+        <Typography variant="label" as="label">
+          countdown
+        </Typography>
+        <div className="flex gap-2">
+          <input
+            type="number"
+            min="1"
+            max="10"
+            value={countdown}
+            onChange={(e) => handleCountdownChange(e)}
+          />
+          <Typography>seconds</Typography>
+        </div>
       </fieldset>
       <button type="submit" onClick={() => setPhotoboothState("CAPTURE")}>
         start

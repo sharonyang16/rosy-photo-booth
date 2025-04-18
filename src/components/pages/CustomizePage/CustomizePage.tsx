@@ -1,4 +1,7 @@
-import StripLayout from "@/components/StripLayout";
+import RadioButton from "@/components/base/RadioButton";
+import Typography from "@/components/base/Typography";
+import PageLayout from "@/components/Layout/PageLayout";
+import StripLayout from "@/components/StripLayout/StripLayout";
 import { useCustomize } from "@/hooks/useCustomize";
 import {
   BACKGROUND_COLORS,
@@ -23,61 +26,65 @@ const CustomizePage = ({ layout, selectedPictures }: CustomizePageProps) => {
     handleDownloadImage,
   } = useCustomize();
   return (
-    <div className="flex">
-      <div className="flex flex-col w-fit">
-        <StripLayout
-          ref={downloadableImageRef}
-          layout={layout}
-          className={backgroundColorToClass.get(backgroundColor)}
-        >
-          {selectedPictures.map((picture, index) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              className={`${layoutToImgClass.get(layout)} ${filterToClass.get(
-                filter
-              )}`}
-              key={index}
-              src={picture}
-              alt="picture"
-            />
-          ))}
-        </StripLayout>
-        <button
-          disabled={Object.keys(downloadableImageRef).length === 0}
-          onClick={handleDownloadImage}
-        >
-          Download
-        </button>
-      </div>
-      <form className="flex flex-col">
-        <fieldset>
-          {BACKGROUND_COLORS.map((color) => (
-            <label key={color}>
-              <input
-                type="radio"
+    <PageLayout pageHeading="Customize">
+      <div className="flex gap-8">
+        <div className="flex flex-col w-fit">
+          <StripLayout
+            ref={downloadableImageRef}
+            layout={layout}
+            className={backgroundColorToClass.get(backgroundColor)}
+          >
+            {selectedPictures.map((picture, index) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                className={`${layoutToImgClass.get(layout)} ${filterToClass.get(
+                  filter
+                )}`}
+                key={index}
+                src={picture}
+                alt="picture"
+              />
+            ))}
+          </StripLayout>
+          <button
+            disabled={Object.keys(downloadableImageRef).length === 0}
+            onClick={handleDownloadImage}
+          >
+            Download
+          </button>
+        </div>
+        <form className="flex flex-col">
+          <fieldset>
+            <Typography variant="label" as="label">
+              background color
+            </Typography>
+            {BACKGROUND_COLORS.map((color) => (
+              <RadioButton
+                key={color}
+                label={color}
                 value={color}
                 checked={backgroundColor === color}
                 onChange={(e) => setBackgroundColor(e.target.value)}
               />
-              {color}
-            </label>
-          ))}
-        </fieldset>
-        <fieldset>
-          {FILTERS.map((filterName) => (
-            <label key={filterName}>
-              <input
-                type="radio"
+            ))}
+          </fieldset>
+          <fieldset>
+            <Typography variant="label" as="label">
+              filters
+            </Typography>
+            {FILTERS.map((filterName) => (
+              <RadioButton
+                key={filterName}
+                label={filterName}
                 value={filterName}
                 checked={filter === filterName}
                 onChange={(e) => setFilter(e.target.value)}
               />
-              {filterName}
-            </label>
-          ))}
-        </fieldset>
-      </form>
-    </div>
+            ))}
+          </fieldset>
+        </form>
+      </div>
+    </PageLayout>
   );
 };
 

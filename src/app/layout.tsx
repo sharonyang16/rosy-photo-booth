@@ -24,12 +24,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <body
-        className={`${nunito.variable} ${nunitoSans.variable} px-32 py-8 antialiased`}
+        className={`${nunito.variable} ${nunitoSans.variable} m-auto antialiased min-h-full flex flex-col max-w-[1280px]`}
       >
         <Layout>
-          <main className="min-h-full">{children}</main>
+          <main className="flex-1 flex justify-center">{children}</main>
         </Layout>
       </body>
     </html>
