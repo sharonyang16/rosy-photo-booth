@@ -27,7 +27,7 @@ const CustomizePage = ({ layout, selectedPictures }: CustomizePageProps) => {
   } = useCustomize();
   return (
     <PageLayout pageHeading="Customize">
-      <div className="flex">
+      <div className="flex gap-8">
         <div className="flex flex-col w-fit">
           <StripLayout
             ref={downloadableImageRef}
