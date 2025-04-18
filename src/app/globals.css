@@ -15,6 +15,13 @@
   */
 
 body {
-  background: var(--background);
+  background: #f8c9df;
+  background: linear-gradient(
+    0deg,
+    rgba(248, 201, 223, 1) 0%,
+    rgba(255, 255, 255, 1) 20%,
+    rgba(255, 255, 255, 1) 80%,
+    rgba(216, 235, 187, 1) 100%
+  );
   color: var(--foreground);
 }
