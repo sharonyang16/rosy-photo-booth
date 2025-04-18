@@ -5,6 +5,7 @@ import PageLayout from "@/components/Layout/PageLayout";
 import Camera from "@/components/Camera/Camera";
 type CapturePageProps = {
   webcamRef: React.RefObject<Webcam>;
+  mirrored: boolean;
   orientation: string;
   currentCountdown: number;
   pictures: string[];
@@ -12,6 +13,7 @@ type CapturePageProps = {
 
 const CapturePage = ({
   webcamRef,
+  mirrored,
   orientation,
   currentCountdown,
   pictures,
@@ -24,7 +26,7 @@ const CapturePage = ({
         <Camera
           ref={webcamRef}
           size={size}
-          mirrored
+          mirrored={mirrored}
           orientation={orientation}
         />
         <div>

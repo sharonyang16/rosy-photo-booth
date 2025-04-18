@@ -7,6 +7,8 @@ import { orientationToClass } from "@/types/constants";
 
 const OptionsPage = ({
   webcamRef,
+  mirrored,
+  handleMirroredChange,
   orientation,
   handleOrientationChange,
   layout,
@@ -24,10 +26,12 @@ const OptionsPage = ({
         <Camera
           ref={webcamRef}
           size={size}
-          mirrored
+          mirrored={mirrored}
           orientation={orientation}
         />
         <OptionsForm
+          mirrored={mirrored}
+          handleMirroredChange={handleMirroredChange}
           orientation={orientation}
           handleOrientationChange={handleOrientationChange}
           layout={layout}

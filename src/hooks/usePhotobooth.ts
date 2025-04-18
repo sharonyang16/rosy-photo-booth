@@ -12,6 +12,7 @@ export const usePhotobooth = () => {
   const webcamRef = React.useRef<Webcam>({} as Webcam);
   const [photoboothState, setPhotoboothState] =
     useState<PhotoboothState>("OPTIONS");
+  const [mirrored, setMirrored] = useState<boolean>(true);
   const [orientation, setOrientation] = useState<string>("landscape");
   const [pictureSize, setPictureSize] = useState<{
     height: number;
@@ -68,6 +69,10 @@ export const usePhotobooth = () => {
     });
   }, [orientation]);
 
+  const handleMirroredChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setMirrored(e.target.checked);
+  };
+
   const handleOrientationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOrientation(e.target.value);
   };
@@ -103,6 +108,8 @@ export const usePhotobooth = () => {
     webcamRef,
     photoboothState,
     setPhotoboothState,
+    mirrored,
+    handleMirroredChange,
     orientation,
     handleOrientationChange,
     pictureSize,

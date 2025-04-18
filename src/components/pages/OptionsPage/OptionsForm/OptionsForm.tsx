@@ -4,6 +4,8 @@ import RadioButton from "@/components/base/RadioButton";
 import Typography from "@/components/base/Typography";
 
 const OptionsForm = ({
+  mirrored,
+  handleMirroredChange,
   orientation,
   handleOrientationChange,
   layout,
@@ -14,6 +16,16 @@ const OptionsForm = ({
 }: PhotoboothFormProps) => {
   return (
     <form className="flex flex-col gap-4">
+      <fieldset>
+        <Typography variant="label" as="label">
+          mirrored
+        </Typography>
+        <input
+          type="checkbox"
+          checked={mirrored}
+          onChange={handleMirroredChange}
+        />
+      </fieldset>
       <fieldset>
         <Typography variant="label" as="label">
           orientation
