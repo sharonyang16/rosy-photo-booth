@@ -26,12 +26,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body
-        className={`${nunito.variable} ${nunitoSans.variable} mx-32 antialiased min-h-full flex flex-col`}
+        className={`${nunito.variable} ${nunitoSans.variable} m-auto antialiased min-h-full flex flex-col max-w-[1280px]`}
       >
         <Layout>
-          <main className="flex-1 flex justify-center items-center">
-            {children}
-          </main>
+          <main className="flex-1 flex justify-center">{children}</main>
         </Layout>
       </body>
     </html>
