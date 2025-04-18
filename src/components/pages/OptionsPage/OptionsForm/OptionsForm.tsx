@@ -12,9 +12,6 @@ const OptionsForm = ({
 }: PhotoboothFormProps) => {
   return (
     <form className="flex flex-col gap-4">
-      <Typography variant="header" as="h1">
-        options
-      </Typography>
       <fieldset>
         <Typography variant="label" as="label">
           layout

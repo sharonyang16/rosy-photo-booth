@@ -1,5 +1,7 @@
 import Webcam from "react-webcam";
 import { PICTURE_COUNT } from "@/types/constants";
+import Typography from "@/components/base/Typography";
+import PageLayout from "@/components/Layout/PageLayout";
 type CapturePageProps = {
   webcamRef: React.RefObject<Webcam>;
   currentCountdown: number;
@@ -11,11 +13,21 @@ const CapturePage = ({
   pictures,
 }: CapturePageProps) => {
   return (
-    <div className="flex">
-      <Webcam ref={webcamRef} mirrored disablePictureInPicture />
-      <div>{currentCountdown}</div>
-      <div>{PICTURE_COUNT * 2 - pictures.length}</div>
-    </div>
+    <PageLayout pageHeading="Capture">
+      <div className="flex">
+        <Webcam ref={webcamRef} mirrored disablePictureInPicture />
+        <div>
+          <div className="flex">
+            <Typography variant="label">Pictures Remaining: </Typography>
+            <Typography>{PICTURE_COUNT * 2 - pictures.length}</Typography>
+          </div>
+
+          <div className="flex justify-center items-center p-8 bg-gray-400">
+            <Typography>{currentCountdown}</Typography>
+          </div>
+        </div>
+      </div>
+    </PageLayout>
   );
 };
 

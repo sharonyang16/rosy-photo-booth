@@ -4,6 +4,7 @@ import DraggableImage from "./DraggableImage";
 import DroppableImage from "./DroppableImage";
 import StripLayout from "@/components/StripLayout";
 import { layoutToImgClass } from "@/types/constants";
+import PageLayout from "@/components/Layout/PageLayout";
 
 type SelectPageProps = {
   layout: Layout;
@@ -20,9 +21,8 @@ const SelectPage = ({
   handleDragEnd,
 }: SelectPageProps) => {
   return (
-    <DndContext onDragEnd={handleDragEnd}>
-      <div className="w-full">
-        <h2 className="text-center">Choose your pictures</h2>
+    <PageLayout pageHeading="Choose your pictures">
+      <DndContext onDragEnd={handleDragEnd}>
         <div className="flex justify-center items-center gap-16">
           <div>
             <StripLayout layout={layout}>
@@ -52,8 +52,8 @@ const SelectPage = ({
             </>
           </div>
         </div>
-      </div>
-    </DndContext>
+      </DndContext>
+    </PageLayout>
   );
 };
 

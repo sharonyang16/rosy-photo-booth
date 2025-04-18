@@ -1,5 +1,11 @@
+import Typography from "@/components/base/Typography";
+
 const Footer = () => {
-  return <footer className="py-4 text-center">Created by Sharon Yang</footer>;
+  return (
+    <footer className="flex justify-center items-center py-4 ">
+      <Typography>Created by Sharon Yang</Typography>
+    </footer>
+  );
 };
 
 export default Footer;
