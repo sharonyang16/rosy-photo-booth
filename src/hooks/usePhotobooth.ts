@@ -10,6 +10,7 @@ import { DragEndEvent } from "@dnd-kit/core";
  */
 export const usePhotobooth = () => {
   const webcamRef = React.useRef<Webcam>({} as Webcam);
+  const [isWebcamOn, setIsWebcamOn] = useState<boolean>(false);
   const [photoboothState, setPhotoboothState] =
     useState<PhotoboothState>("OPTIONS");
   const [layout, setLayout] = useState<Layout>("STRIP");
@@ -51,6 +52,10 @@ export const usePhotobooth = () => {
       }
     }
   }, [capture, countdown, currentCountdown, photoboothState, pictures]);
+
+  const handleUserMedia = () => {
+    setIsWebcamOn(true);
+  };
   const handleLayoutChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLayout(e.target.value as Layout);
   };
@@ -81,6 +86,8 @@ export const usePhotobooth = () => {
 
   return {
     webcamRef,
+    isWebcamOn,
+    handleUserMedia,
     photoboothState,
     setPhotoboothState,
     layout,

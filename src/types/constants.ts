@@ -29,3 +29,13 @@ export const filterToClass = new Map<string, string>([
   ["grayscale", "grayscale"],
   ["sepia", "sepia"],
 ]);
+
+export const ORIENTATIONS = ["landscape", "portrait"];
+
+export const orientationToClass = new Map<
+  string,
+  { height: string; width: string }
+>([
+  ["landscape", { height: "h-[160px]", width: "w-[120px]" }],
+  ["portrait", { height: "h-[120px]", width: "w-[160px]" }],
+]);

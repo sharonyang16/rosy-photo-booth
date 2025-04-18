@@ -8,6 +8,8 @@ import CustomizePage from "@/components/pages/CustomizePage/CustomizePage";
 const Photobooth = () => {
   const {
     webcamRef,
+    isWebcamOn,
+    handleUserMedia,
     photoboothState,
     setPhotoboothState,
     layout,
@@ -25,6 +27,8 @@ const Photobooth = () => {
       return (
         <OptionsPage
           webcamRef={webcamRef}
+          isWebcamOn={isWebcamOn}
+          handleUserMedia={handleUserMedia}
           layout={layout}
           handleLayoutChange={handleLayoutChange}
           countdown={countdown}
