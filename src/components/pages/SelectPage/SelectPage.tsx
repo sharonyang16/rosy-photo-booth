@@ -22,7 +22,6 @@ const SelectPage = ({
   setPhotoboothState,
   handleDragEnd,
 }: SelectPageProps) => {
-
   const size = {
     height: pictureSize.height / 2,
     width: pictureSize.width / 2,
@@ -33,7 +32,7 @@ const SelectPage = ({
       <DndContext onDragEnd={handleDragEnd}>
         <div className="flex justify-center items-center gap-16">
           <div>
-            <StripLayout layout={layout} size={size}>
+            <StripLayout layout={layout}>
               {selectedPictures.map((picture, index) => (
                 <DroppableImage
                   key={`droppable-slot-${index}`}
