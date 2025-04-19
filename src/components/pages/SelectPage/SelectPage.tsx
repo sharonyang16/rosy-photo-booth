@@ -32,7 +32,7 @@ const SelectPage = ({
       <DndContext onDragEnd={handleDragEnd}>
         <div className="flex justify-center items-center gap-16">
           <div>
-            <StripLayout layout={layout}>
+            <StripLayout layout={layout} className="bg-white">
               {selectedPictures.map((picture, index) => (
                 <DroppableImage
                   key={`droppable-slot-${index}`}
