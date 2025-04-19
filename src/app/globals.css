@@ -23,6 +23,8 @@ body {
     rgba(255, 255, 255, 1) 80%,
     rgba(216, 235, 187, 1) 100%
   );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: var(--foreground);
   font-family: "Nunito", "Nunito Sans", Arial, Helvetica, sans-serif;
 }

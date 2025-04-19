@@ -3,6 +3,7 @@ import OptionsForm from "./OptionsForm/OptionsForm";
 import { PhotoboothFormProps } from "../../../types/photobooth";
 import PageLayout from "@/components/Layout/PageLayout";
 import Camera from "@/components/Camera/Camera";
+import PaperContainer from "@/components/Layout/PaperContainer";
 
 const OptionsPage = ({
   webcamRef,
@@ -22,20 +23,21 @@ const OptionsPage = ({
 } & PhotoboothFormProps) => {
   return (
     <PageLayout pageHeading="Options">
-      <div className="flex gap-4">
+      <PaperContainer>
         <Camera ref={webcamRef} size={size} mirrored={mirrored} />
-        <OptionsForm
-          mirrored={mirrored}
-          handleMirroredChange={handleMirroredChange}
-          orientation={orientation}
-          handleOrientationChange={handleOrientationChange}
-          layout={layout}
-          handleLayoutChange={handleLayoutChange}
-          countdown={countdown}
-          handleCountdownChange={handleCountdownChange}
-          setPhotoboothState={setPhotoboothState}
-        />
-      </div>
+      </PaperContainer>
+
+      <OptionsForm
+        mirrored={mirrored}
+        handleMirroredChange={handleMirroredChange}
+        orientation={orientation}
+        handleOrientationChange={handleOrientationChange}
+        layout={layout}
+        handleLayoutChange={handleLayoutChange}
+        countdown={countdown}
+        handleCountdownChange={handleCountdownChange}
+        setPhotoboothState={setPhotoboothState}
+      />
     </PageLayout>
   );
 };
