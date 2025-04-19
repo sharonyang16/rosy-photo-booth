@@ -1,10 +1,12 @@
+import CroppedImage from "@/components/CroppedImage/CroppedImage";
 import { useDraggable } from "@dnd-kit/core";
 
 type DraggableImageProps = {
   src: string;
+  size: { height: number; width: number };
 };
 
-const DraggableImage = ({ src }: DraggableImageProps) => {
+const DraggableImage = ({ src, size }: DraggableImageProps) => {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: src,
   });
@@ -19,12 +21,7 @@ const DraggableImage = ({ src }: DraggableImageProps) => {
   return (
     <>
       <button ref={setNodeRef} {...attributes} {...listeners} style={style}>
-        {/* eslint-disable-next-line @next/next/no-img-element*/}
-        <img
-          className="min-w-[160px] w-[160px]"
-          src={src}
-          alt="picture preview"
-        />
+        <CroppedImage src={src} size={size} alt="taken picture preview" />
       </button>
     </>
   );

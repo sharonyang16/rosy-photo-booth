@@ -1,5 +1,6 @@
 import RadioButton from "@/components/base/RadioButton";
 import Typography from "@/components/base/Typography";
+import CroppedImage from "@/components/CroppedImage/CroppedImage";
 import PageLayout from "@/components/Layout/PageLayout";
 import StripLayout from "@/components/StripLayout/StripLayout";
 import { useCustomize } from "@/hooks/useCustomize";
@@ -8,15 +9,20 @@ import {
   backgroundColorToClass,
   FILTERS,
   filterToClass,
-  layoutToImgClass,
 } from "@/types/constants";
 import { Layout } from "@/types/photobooth";
 
 type CustomizePageProps = {
   layout: Layout;
   selectedPictures: string[];
+  pictureSize: { height: number; width: number };
 };
-const CustomizePage = ({ layout, selectedPictures }: CustomizePageProps) => {
+
+const CustomizePage = ({
+  layout,
+  selectedPictures,
+  pictureSize,
+}: CustomizePageProps) => {
   const {
     backgroundColor,
     setBackgroundColor,
@@ -25,6 +31,12 @@ const CustomizePage = ({ layout, selectedPictures }: CustomizePageProps) => {
     downloadableImageRef,
     handleDownloadImage,
   } = useCustomize();
+
+  const size = {
+    height: pictureSize.height / 2,
+    width: pictureSize.width / 2,
+  };
+
   return (
     <PageLayout pageHeading="Customize">
       <div className="flex gap-8">
@@ -35,14 +47,12 @@ const CustomizePage = ({ layout, selectedPictures }: CustomizePageProps) => {
             className={backgroundColorToClass.get(backgroundColor)}
           >
             {selectedPictures.map((picture, index) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                className={`${layoutToImgClass.get(layout)} ${filterToClass.get(
-                  filter
-                )}`}
+              <CroppedImage
                 key={index}
                 src={picture}
+                size={size}
                 alt="picture"
+                className={`${filterToClass.get(filter)}`}
               />
             ))}
           </StripLayout>

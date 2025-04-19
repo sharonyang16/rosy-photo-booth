@@ -3,35 +3,42 @@ import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import DraggableImage from "./DraggableImage";
 import DroppableImage from "./DroppableImage";
 import StripLayout from "@/components/StripLayout/StripLayout";
-import { layoutToImgClass } from "@/types/constants";
 import PageLayout from "@/components/Layout/PageLayout";
 
 type SelectPageProps = {
   layout: Layout;
+  pictureSize: { height: number; width: number };
   pictures: string[];
   selectedPictures: string[];
   setPhotoboothState: React.Dispatch<React.SetStateAction<PhotoboothState>>;
   handleDragEnd: (event: DragEndEvent) => void;
 };
+
 const SelectPage = ({
   layout,
+  pictureSize,
   pictures,
   selectedPictures,
   setPhotoboothState,
   handleDragEnd,
 }: SelectPageProps) => {
+  const size = {
+    height: pictureSize.height / 2,
+    width: pictureSize.width / 2,
+  };
+
   return (
     <PageLayout pageHeading="Choose your pictures">
       <DndContext onDragEnd={handleDragEnd}>
         <div className="flex justify-center items-center gap-16">
           <div>
-            <StripLayout layout={layout}>
+            <StripLayout layout={layout} className="bg-white">
               {selectedPictures.map((picture, index) => (
                 <DroppableImage
                   key={`droppable-slot-${index}`}
                   id={index.toString()}
                   src={picture}
-                  className={layoutToImgClass.get(layout)}
+                  size={size}
                 />
               ))}
             </StripLayout>
@@ -46,7 +53,7 @@ const SelectPage = ({
             <>
               <div className="grid grid-cols-4 gap-8">
                 {pictures.map((picture, index) => (
-                  <DraggableImage key={index} src={picture} />
+                  <DraggableImage key={index} src={picture} size={size} />
                 ))}
               </div>
             </>

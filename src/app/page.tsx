@@ -10,6 +10,11 @@ const Photobooth = () => {
     webcamRef,
     photoboothState,
     setPhotoboothState,
+    mirrored,
+    handleMirroredChange,
+    orientation,
+    handleOrientationChange,
+    pictureSize,
     layout,
     handleLayoutChange,
     countdown,
@@ -25,6 +30,11 @@ const Photobooth = () => {
       return (
         <OptionsPage
           webcamRef={webcamRef}
+          orientation={orientation}
+          pictureSize={pictureSize}
+          mirrored={mirrored}
+          handleMirroredChange={handleMirroredChange}
+          handleOrientationChange={handleOrientationChange}
           layout={layout}
           handleLayoutChange={handleLayoutChange}
           countdown={countdown}
@@ -36,6 +46,8 @@ const Photobooth = () => {
       return (
         <CapturePage
           webcamRef={webcamRef}
+          pictureSize={pictureSize}
+          mirrored={mirrored}
           currentCountdown={currentCountdown}
           pictures={pictures}
         />
@@ -44,6 +56,7 @@ const Photobooth = () => {
       return (
         <SelectPage
           layout={layout}
+          pictureSize={pictureSize}
           pictures={pictures}
           selectedPictures={selectedPictures}
           setPhotoboothState={setPhotoboothState}
@@ -52,7 +65,11 @@ const Photobooth = () => {
       );
     case "CUSTOMIZE":
       return (
-        <CustomizePage layout={layout} selectedPictures={selectedPictures} />
+        <CustomizePage
+          layout={layout}
+          pictureSize={pictureSize}
+          selectedPictures={selectedPictures}
+        />
       );
     default:
       return <></>;

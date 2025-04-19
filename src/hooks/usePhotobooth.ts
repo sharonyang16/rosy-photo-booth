@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Webcam from "react-webcam";
 import { PhotoboothState, Layout } from "../types/photobooth";
-import { PICTURE_COUNT } from "@/types/constants";
+import { orientationToClass, PICTURE_COUNT } from "@/types/constants";
 import { DragEndEvent } from "@dnd-kit/core";
 
 /**
@@ -12,6 +12,12 @@ export const usePhotobooth = () => {
   const webcamRef = React.useRef<Webcam>({} as Webcam);
   const [photoboothState, setPhotoboothState] =
     useState<PhotoboothState>("OPTIONS");
+  const [mirrored, setMirrored] = useState<boolean>(true);
+  const [orientation, setOrientation] = useState<string>("landscape");
+  const [pictureSize, setPictureSize] = useState<{
+    height: number;
+    width: number;
+  }>({ height: 0, width: 0 });
   const [layout, setLayout] = useState<Layout>("STRIP");
   const [countdown, setCountdown] = useState<number>(3);
   const [currentCountdown, setCurrentCountdown] = useState<number>(3);
@@ -51,6 +57,25 @@ export const usePhotobooth = () => {
       }
     }
   }, [capture, countdown, currentCountdown, photoboothState, pictures]);
+
+  useEffect(() => {
+    const size = orientationToClass.get(orientation) || {
+      height: 0,
+      width: 0,
+    };
+    setPictureSize({
+      height: size.height,
+      width: size.width,
+    });
+  }, [orientation]);
+
+  const handleMirroredChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setMirrored(e.target.checked);
+  };
+
+  const handleOrientationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setOrientation(e.target.value);
+  };
   const handleLayoutChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLayout(e.target.value as Layout);
   };
@@ -83,6 +108,11 @@ export const usePhotobooth = () => {
     webcamRef,
     photoboothState,
     setPhotoboothState,
+    mirrored,
+    handleMirroredChange,
+    orientation,
+    handleOrientationChange,
+    pictureSize,
     layout,
     handleLayoutChange,
     countdown,

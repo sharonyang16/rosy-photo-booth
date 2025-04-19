@@ -1,13 +1,8 @@
 import { Layout } from "./photobooth";
 
 export const layoutToClass = new Map<Layout, string>([
-  ["STRIP", "flex flex-col w-min gap-3 px-3 pt-3 pb-10 bg-white"],
-  ["SQUARE", "grid grid-cols-2 gap-3 px-3 pb-3 pt-10 bg-white"],
-]);
-
-export const layoutToImgClass = new Map<Layout, string>([
-  ["STRIP", "min-w-[160px] max-w-[160px] min-h-[120px]"],
-  ["SQUARE", "min-w-[160px] max-w-[160px] min-h-[120px]"],
+  ["STRIP", "flex flex-col w-min gap-3 px-3 pt-3 pb-10"],
+  ["SQUARE", "grid grid-cols-2 gap-3 px-3 pb-3 pt-10"],
 ]);
 
 export const PICTURE_COUNT = 4;
@@ -28,4 +23,14 @@ export const filterToClass = new Map<string, string>([
   ["none", ""],
   ["grayscale", "grayscale"],
   ["sepia", "sepia"],
+]);
+
+export const ORIENTATIONS = ["landscape", "portrait"];
+
+export const orientationToClass = new Map<
+  string,
+  { height: number; width: number }
+>([
+  ["landscape", { height: 300, width: 400 }],
+  ["portrait", { height: 400, width: 300 }],
 ]);
