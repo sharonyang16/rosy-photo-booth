@@ -5,12 +5,7 @@ import PageLayout from "@/components/Layout/PageLayout";
 import PaperContainer from "@/components/Layout/PaperContainer";
 import StripLayout from "@/components/StripLayout/StripLayout";
 import { useCustomize } from "@/hooks/useCustomize";
-import {
-  BACKGROUND_COLORS,
-  backgroundColorToClass,
-  FILTERS,
-  filterToClass,
-} from "@/types/constants";
+import { BACKGROUND_COLORS, FILTERS } from "@/types/constants";
 import { Layout } from "@/types/photobooth";
 
 type CustomizePageProps = {
@@ -26,8 +21,10 @@ const CustomizePage = ({
 }: CustomizePageProps) => {
   const {
     backgroundColor,
+    backgroundColorClass,
     setBackgroundColor,
     filter,
+    filterClass,
     setFilter,
     downloadableImageRef,
     handleDownloadImage,
@@ -44,7 +41,7 @@ const CustomizePage = ({
         <StripLayout
           ref={downloadableImageRef}
           layout={layout}
-          className={backgroundColorToClass.get(backgroundColor)}
+          className={backgroundColorClass}
         >
           {selectedPictures.map((picture, index) => (
             <CroppedImage
@@ -52,7 +49,7 @@ const CustomizePage = ({
               src={picture}
               size={size}
               alt="picture"
-              className={`${filterToClass.get(filter)}`}
+              className={filterClass}
             />
           ))}
         </StripLayout>
