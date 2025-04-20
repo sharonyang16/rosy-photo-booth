@@ -10,15 +10,6 @@
   --foreground: #000000;
 }
 
-/* TODO: add dark mode later
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #000000;
-    --foreground: #ffffff;
-  }
-}
-  */
-
 body {
   background: #f8c9df;
   background: linear-gradient(
