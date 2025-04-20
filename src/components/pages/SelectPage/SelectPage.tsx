@@ -23,10 +23,6 @@ const SelectPage = ({
   setPhotoboothState,
   handleDragEnd,
 }: SelectPageProps) => {
-  const size = {
-    height: pictureSize.height / 2,
-    width: pictureSize.width / 2,
-  };
 
   return (
     <PageLayout pageHeading="Choose your pictures">
@@ -40,15 +36,25 @@ const SelectPage = ({
                     key={`droppable-slot-${index}`}
                     id={index.toString()}
                     src={picture}
-                    size={size}
+                    size={{
+                      height: pictureSize.height / 2,
+                      width: pictureSize.width / 2,
+                    }}
                   />
                 ))}
               </StripLayout>
             </PaperContainer>
-            <div className="flex flex-col">
+            <div className="flex flex-col justify-center items-center">
               <div className="grid grid-cols-2 gap-8 w-fit">
                 {pictures.map((picture, index) => (
-                  <DraggableImage key={index} src={picture} size={size} />
+                  <DraggableImage
+                    key={index}
+                    src={picture}
+                    size={{
+                      height: pictureSize.height / 2.5,
+                      width: pictureSize.width / 2.5,
+                    }}
+                  />
                 ))}
               </div>
               <button

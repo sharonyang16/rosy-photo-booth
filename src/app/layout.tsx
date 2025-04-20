@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body
-        className={`${nunito.variable} ${nunitoSans.variable} m-auto antialiased min-h-full flex flex-col max-w-[1280px]`}
+        className={`${nunito.variable} ${nunitoSans.variable} m-auto antialiased min-h-full flex flex-col max-w-[1280px] px-10`}
       >
         <Layout>
           <main className="flex-1 flex justify-center">{children}</main>
