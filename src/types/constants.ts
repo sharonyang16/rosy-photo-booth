@@ -34,3 +34,10 @@ export const orientationToClass = new Map<
   ["landscape", { height: 300, width: 400 }],
   ["portrait", { height: 400, width: 300 }],
 ]);
+
+export const DEFAULT_OPTIONS = {
+  mirrored: true,
+  orientation: "landscape",
+  layout: "STRIP" as Layout,
+  countdown: 3,
+};

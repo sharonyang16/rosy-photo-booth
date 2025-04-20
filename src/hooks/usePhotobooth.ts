@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Webcam from "react-webcam";
 import { PhotoboothState, Layout } from "../types/photobooth";
-import { orientationToClass, PICTURE_COUNT } from "@/types/constants";
+import { orientationToClass, PICTURE_COUNT, DEFAULT_OPTIONS } from "@/types/constants";
 import { DragEndEvent } from "@dnd-kit/core";
 
-const defaultSettings = {
-  mirrored: true,
-  orientation: "landscape",
-  layout: "STRIP" as Layout,
-  countdown: 3,
-};
 
 /**
  * TODO: write JSDoc Comment
@@ -19,18 +13,18 @@ export const usePhotobooth = () => {
   const webcamRef = React.useRef<Webcam>({} as Webcam);
   const [photoboothState, setPhotoboothState] =
     useState<PhotoboothState>("OPTIONS");
-  const [mirrored, setMirrored] = useState<boolean>(defaultSettings.mirrored);
+  const [mirrored, setMirrored] = useState<boolean>(DEFAULT_OPTIONS.mirrored);
   const [orientation, setOrientation] = useState<string>(
-    defaultSettings.orientation
+    DEFAULT_OPTIONS.orientation
   );
   const [pictureSize, setPictureSize] = useState<{
     height: number;
     width: number;
   }>({ height: 0, width: 0 });
-  const [layout, setLayout] = useState<Layout>(defaultSettings.layout);
-  const [countdown, setCountdown] = useState<number>(defaultSettings.countdown);
+  const [layout, setLayout] = useState<Layout>(DEFAULT_OPTIONS.layout);
+  const [countdown, setCountdown] = useState<number>(DEFAULT_OPTIONS.countdown);
   const [currentCountdown, setCurrentCountdown] = useState<number>(
-    defaultSettings.countdown
+    DEFAULT_OPTIONS.countdown
   );
   const [pictures, setPictures] = useState<string[]>([]);
   const [selectedPictures, setSelectedPictures] = useState<string[]>(
@@ -119,10 +113,10 @@ export const usePhotobooth = () => {
   };
 
   const handleResetToDefault = () => {
-    setMirrored(defaultSettings.mirrored);
-    setOrientation(defaultSettings.orientation);
-    setLayout(defaultSettings.layout);
-    setCountdown(defaultSettings.countdown);
+    setMirrored(DEFAULT_OPTIONS.mirrored);
+    setOrientation(DEFAULT_OPTIONS.orientation);
+    setLayout(DEFAULT_OPTIONS.layout);
+    setCountdown(DEFAULT_OPTIONS.countdown);
   };
 
   const handleClearSelected = () => {
