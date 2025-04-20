@@ -17,6 +17,7 @@ const OptionsPage = ({
   countdown,
   handleCountdownChange,
   setPhotoboothState,
+  handleResetToDefault,
 }: {
   webcamRef: React.RefObject<Webcam>;
   pictureSize: { height: number; width: number };
@@ -37,6 +38,7 @@ const OptionsPage = ({
         countdown={countdown}
         handleCountdownChange={handleCountdownChange}
         setPhotoboothState={setPhotoboothState}
+        handleResetToDefault={handleResetToDefault}
       />
     </PageLayout>
   );

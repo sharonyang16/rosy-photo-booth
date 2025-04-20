@@ -13,6 +13,7 @@ type SelectPageProps = {
   selectedPictures: string[];
   setPhotoboothState: React.Dispatch<React.SetStateAction<PhotoboothState>>;
   handleDragEnd: (event: DragEndEvent) => void;
+  handleClearSelected: () => void;
 };
 
 const SelectPage = ({
@@ -22,8 +23,8 @@ const SelectPage = ({
   selectedPictures,
   setPhotoboothState,
   handleDragEnd,
+  handleClearSelected,
 }: SelectPageProps) => {
-
   return (
     <PageLayout pageHeading="Choose your pictures">
       <div className="col-span-full">
@@ -57,12 +58,15 @@ const SelectPage = ({
                   />
                 ))}
               </div>
-              <button
-                disabled={selectedPictures.some((picture) => !picture)}
-                onClick={() => setPhotoboothState("CUSTOMIZE")}
-              >
-                done
-              </button>
+              <div className="flex gap-2">
+                <button onClick={handleClearSelected}>clear</button>
+                <button
+                  disabled={selectedPictures.some((picture) => !picture)}
+                  onClick={() => setPhotoboothState("CUSTOMIZE")}
+                >
+                  done
+                </button>
+              </div>
             </div>
           </div>
         </DndContext>
