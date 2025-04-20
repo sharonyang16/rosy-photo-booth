@@ -6,7 +6,7 @@ const buttonVariants = cva("py-2 px-8 rounded-lg text-base cursor-pointer disabl
   variants: {
     variant: {
       primary:
-        "bg-[#f2afcf] enabled:hover:bg-[#ed9fc3] enabled:active:bg-[#ed9fc3] enabled:focus:bg-[#ed9fc3]",
+        "bg-pink-primary enabled:hover:bg-pink-dark enabled:active:bg-pink-dark enabled:focus:bg-pink-dark",
       secondary:
         "border-1 border-gray-500 enabled:hover:border-gray-900 enabled:active:border-gray-900 enabled:focus:border-gray-900 enabled:hover:bg-gray-100 enabled:active:bg-gray-100 enabled:focus:bg-gray-100",
     },
