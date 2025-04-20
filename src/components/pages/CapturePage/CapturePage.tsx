@@ -22,17 +22,16 @@ const CapturePage = ({
   return (
     <PageLayout pageHeading="Capture">
       <PaperContainer>
-        <Camera ref={webcamRef} size={size} mirrored={mirrored} />
+        <div className="flex flex-col gap-4 items-center">
+          <Camera ref={webcamRef} size={size} mirrored={mirrored} />
+          <div className="flex justify-center items-center p-4 bg-gray-200 size-min w-16 h-16 rounded-lg">
+            <Typography>{currentCountdown === 0 ? "Go!" : currentCountdown}</Typography>
+          </div>
+        </div>
       </PaperContainer>
-      <div>
-        <div className="flex">
-          <Typography variant="label">Pictures Remaining: </Typography>
-          <Typography>{PICTURE_COUNT * 2 - pictures.length}</Typography>
-        </div>
-
-        <div className="flex justify-center items-center p-8 bg-gray-400 size-min">
-          <Typography>{currentCountdown}</Typography>
-        </div>
+      <div className="flex gap-2">
+        <Typography variant="label">Pictures Remaining: </Typography>
+        <Typography>{PICTURE_COUNT * 2 - pictures.length}</Typography>
       </div>
     </PageLayout>
   );
