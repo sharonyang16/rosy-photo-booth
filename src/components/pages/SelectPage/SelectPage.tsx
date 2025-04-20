@@ -47,7 +47,7 @@ const SelectPage = ({
                 ))}
               </StripLayout>
             </PaperContainer>
-            <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-col justify-center gap-4">
               <div className="grid grid-cols-2 gap-8 w-fit">
                 {pictures.map((picture, index) => (
                   <DraggableImage
