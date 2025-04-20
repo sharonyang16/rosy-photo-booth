@@ -2,6 +2,7 @@ import { LAYOUTS, ORIENTATIONS } from "@/types/constants";
 import { PhotoboothFormProps } from "../../../../types/photobooth";
 import RadioButton from "@/components/base/RadioButton";
 import Typography from "@/components/base/Typography";
+import Button from "@/components/base/Button";
 
 const OptionsForm = ({
   mirrored,
@@ -20,10 +21,11 @@ const OptionsForm = ({
       <fieldset className="flex gap-2">
         <input
           type="checkbox"
+          className="accent-pink-primary"
           checked={mirrored}
           onChange={handleMirroredChange}
         />
-        <Typography variant="label" as="label">
+        <Typography as="label">
           mirrored
         </Typography>
       </fieldset>
@@ -72,10 +74,12 @@ const OptionsForm = ({
         </div>
       </fieldset>
       <div className="flex gap-4">
-        <button onClick={handleResetToDefault}>reset</button>
-        <button type="submit" onClick={() => setPhotoboothState("CAPTURE")}>
+        <Button variant="secondary" onClick={handleResetToDefault}>
+          reset
+        </Button>
+        <Button type="submit" onClick={() => setPhotoboothState("CAPTURE")}>
           start
-        </button>
+        </Button>
       </div>
     </form>
   );

@@ -2,7 +2,7 @@ import { Layout } from "./photobooth";
 
 export const layoutToClass = new Map<Layout, string>([
   ["STRIP", "flex flex-col w-min gap-3 px-3 pt-3 pb-10"],
-  ["SQUARE", "grid grid-cols-2 gap-3 px-3 pb-3 pt-10"],
+  ["SQUARE", "grid grid-cols-2 h-min gap-3 px-3 pb-3 pt-10"],
 ]);
 
 export const PICTURE_COUNT = 4;

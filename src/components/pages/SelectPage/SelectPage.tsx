@@ -5,6 +5,7 @@ import DroppableImage from "./DroppableImage";
 import StripLayout from "@/components/StripLayout/StripLayout";
 import PageLayout from "@/components/Layout/PageLayout";
 import PaperContainer from "@/components/Layout/PaperContainer";
+import Button from "@/components/base/Button";
 
 type SelectPageProps = {
   layout: Layout;
@@ -25,6 +26,7 @@ const SelectPage = ({
   handleDragEnd,
   handleClearSelected,
 }: SelectPageProps) => {
+  console.log(selectedPictures.some((picture) => !picture));
   return (
     <PageLayout pageHeading="Choose your pictures">
       <div className="col-span-full">
@@ -45,7 +47,7 @@ const SelectPage = ({
                 ))}
               </StripLayout>
             </PaperContainer>
-            <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-col justify-center gap-4">
               <div className="grid grid-cols-2 gap-8 w-fit">
                 {pictures.map((picture, index) => (
                   <DraggableImage
@@ -59,13 +61,15 @@ const SelectPage = ({
                 ))}
               </div>
               <div className="flex gap-2">
-                <button onClick={handleClearSelected}>clear</button>
-                <button
+                <Button variant="secondary" onClick={handleClearSelected}>
+                  clear
+                </Button>
+                <Button
                   disabled={selectedPictures.some((picture) => !picture)}
                   onClick={() => setPhotoboothState("CUSTOMIZE")}
                 >
                   done
-                </button>
+                </Button>
               </div>
             </div>
           </div>

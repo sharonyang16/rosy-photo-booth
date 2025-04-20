@@ -1,3 +1,4 @@
+import Button from "@/components/base/Button";
 import RadioButton from "@/components/base/RadioButton";
 import Typography from "@/components/base/Typography";
 import CroppedImage from "@/components/CroppedImage/CroppedImage";
@@ -54,7 +55,7 @@ const CustomizePage = ({
           ))}
         </StripLayout>
       </PaperContainer>
-      <form className="flex flex-col">
+      <form className="flex flex-col gap-4">
         <fieldset>
           <Typography variant="label" as="label">
             background color
@@ -83,13 +84,15 @@ const CustomizePage = ({
             />
           ))}
         </fieldset>
-        <button
-          type="button"
-          disabled={Object.keys(downloadableImageRef).length === 0}
-          onClick={handleDownloadImage}
-        >
-          Download
-        </button>
+        <div>
+          <Button
+            type="button"
+            disabled={Object.keys(downloadableImageRef).length === 0}
+            onClick={handleDownloadImage}
+          >
+            Download
+          </Button>
+        </div>
       </form>
     </PageLayout>
   );
