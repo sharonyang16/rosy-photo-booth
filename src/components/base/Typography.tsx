@@ -7,7 +7,7 @@ const typographyVariants = cva("", {
     variant: {
       title: "text-[44px] leading-[52px] font-bold",
       header: "text-[28px] leading-[36px] font-bold",
-      label: "text-base leading-[1.25] font-medium",
+      label: "text-base leading-[1.25] font-bold",
       body: "text-base",
     },
   },

@@ -25,7 +25,7 @@ const OptionsForm = ({
           checked={mirrored}
           onChange={handleMirroredChange}
         />
-        <Typography variant="label" as="label">
+        <Typography as="label">
           mirrored
         </Typography>
       </fieldset>
