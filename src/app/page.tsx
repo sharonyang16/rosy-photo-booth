@@ -23,6 +23,8 @@ const Photobooth = () => {
     pictures,
     selectedPictures,
     handleDragEnd,
+    handleResetToDefault,
+    handleClearSelected,
   } = usePhotobooth();
 
   switch (photoboothState) {
@@ -40,6 +42,7 @@ const Photobooth = () => {
           countdown={countdown}
           handleCountdownChange={handleCountdownChange}
           setPhotoboothState={setPhotoboothState}
+          handleResetToDefault={handleResetToDefault}
         />
       );
     case "CAPTURE":
@@ -61,6 +64,7 @@ const Photobooth = () => {
           selectedPictures={selectedPictures}
           setPhotoboothState={setPhotoboothState}
           handleDragEnd={handleDragEnd}
+          handleClearSelected={handleClearSelected}
         />
       );
     case "CUSTOMIZE":

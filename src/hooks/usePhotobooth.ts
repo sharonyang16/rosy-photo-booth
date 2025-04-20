@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Webcam from "react-webcam";
 import { PhotoboothState, Layout } from "../types/photobooth";
-import { orientationToClass, PICTURE_COUNT } from "@/types/constants";
+import { orientationToClass, PICTURE_COUNT, DEFAULT_OPTIONS } from "@/types/constants";
 import { DragEndEvent } from "@dnd-kit/core";
+
 
 /**
  * TODO: write JSDoc Comment
@@ -12,15 +13,19 @@ export const usePhotobooth = () => {
   const webcamRef = React.useRef<Webcam>({} as Webcam);
   const [photoboothState, setPhotoboothState] =
     useState<PhotoboothState>("OPTIONS");
-  const [mirrored, setMirrored] = useState<boolean>(true);
-  const [orientation, setOrientation] = useState<string>("landscape");
+  const [mirrored, setMirrored] = useState<boolean>(DEFAULT_OPTIONS.mirrored);
+  const [orientation, setOrientation] = useState<string>(
+    DEFAULT_OPTIONS.orientation
+  );
   const [pictureSize, setPictureSize] = useState<{
     height: number;
     width: number;
   }>({ height: 0, width: 0 });
-  const [layout, setLayout] = useState<Layout>("STRIP");
-  const [countdown, setCountdown] = useState<number>(3);
-  const [currentCountdown, setCurrentCountdown] = useState<number>(3);
+  const [layout, setLayout] = useState<Layout>(DEFAULT_OPTIONS.layout);
+  const [countdown, setCountdown] = useState<number>(DEFAULT_OPTIONS.countdown);
+  const [currentCountdown, setCurrentCountdown] = useState<number>(
+    DEFAULT_OPTIONS.countdown
+  );
   const [pictures, setPictures] = useState<string[]>([]);
   const [selectedPictures, setSelectedPictures] = useState<string[]>(
     Array(PICTURE_COUNT).fill("")
@@ -69,6 +74,10 @@ export const usePhotobooth = () => {
     });
   }, [orientation]);
 
+  useEffect(() => {
+    setCurrentCountdown(countdown);
+  }, [countdown]);
+
   const handleMirroredChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMirrored(e.target.checked);
   };
@@ -85,7 +94,6 @@ export const usePhotobooth = () => {
 
     if (value > 0 && value < 11) {
       setCountdown(value);
-      setCurrentCountdown(value);
     }
   };
 
@@ -102,6 +110,17 @@ export const usePhotobooth = () => {
         return newSelectedPictures;
       });
     }
+  };
+
+  const handleResetToDefault = () => {
+    setMirrored(DEFAULT_OPTIONS.mirrored);
+    setOrientation(DEFAULT_OPTIONS.orientation);
+    setLayout(DEFAULT_OPTIONS.layout);
+    setCountdown(DEFAULT_OPTIONS.countdown);
+  };
+
+  const handleClearSelected = () => {
+    setSelectedPictures(Array(PICTURE_COUNT).fill(""));
   };
 
   return {
@@ -121,5 +140,7 @@ export const usePhotobooth = () => {
     pictures,
     selectedPictures,
     handleDragEnd,
+    handleResetToDefault,
+    handleClearSelected,
   };
 };

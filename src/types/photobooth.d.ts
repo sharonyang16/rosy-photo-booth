@@ -12,4 +12,5 @@ export type PhotoboothFormProps = {
   countdown: number;
   handleCountdownChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   setPhotoboothState: React.Dispatch<React.SetStateAction<PhotoboothState>>;
+  handleResetToDefault: () => void;
 };

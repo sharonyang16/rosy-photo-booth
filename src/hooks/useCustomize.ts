@@ -1,10 +1,21 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { toPng } from "html-to-image";
+import { backgroundColorToClass, filterToClass } from "@/types/constants";
 
 export const useCustomize = () => {
-  const [backgroundColor, setBackgroundColor] = useState("sky");
+  const [backgroundColor, setBackgroundColor] = useState("white");
+  const [backgroundColorClass, setBackgroundColorClass] = useState("bg-white");
   const [filter, setFilter] = useState("none");
+  const [filterClass, setFilterClass] = useState("");
   const downloadableImageRef = useRef<HTMLDivElement>({} as HTMLDivElement);
+
+  useEffect(() => {
+    setBackgroundColorClass(backgroundColorToClass.get(backgroundColor) || "");
+  }, [backgroundColor]);
+
+  useEffect(() => {
+    setFilterClass(filterToClass.get(filter) || "");
+  }, [filter]);
 
   const handleDownloadImage = () => {
     toPng(downloadableImageRef.current, { cacheBust: false, skipFonts: true })
@@ -24,8 +35,10 @@ export const useCustomize = () => {
   return {
     backgroundColor,
     setBackgroundColor,
+    backgroundColorClass,
     filter,
     setFilter,
+    filterClass,
     downloadableImageRef,
     handleDownloadImage,
   };

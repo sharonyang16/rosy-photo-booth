@@ -9,9 +9,10 @@ export const PICTURE_COUNT = 4;
 
 export const LAYOUTS = ["STRIP", "SQUARE"];
 
-export const BACKGROUND_COLORS = ["sky", "yellow", "pink"];
+export const BACKGROUND_COLORS = ["white", "sky", "yellow", "pink"];
 
 export const backgroundColorToClass = new Map<string, string>([
+  ["white", "bg-white"],
   ["sky", "bg-sky-500"],
   ["yellow", "bg-yellow-500"],
   ["pink", "bg-pink-500"],
@@ -34,3 +35,10 @@ export const orientationToClass = new Map<
   ["landscape", { height: 300, width: 400 }],
   ["portrait", { height: 400, width: 300 }],
 ]);
+
+export const DEFAULT_OPTIONS = {
+  mirrored: true,
+  orientation: "landscape",
+  layout: "STRIP" as Layout,
+  countdown: 3,
+};
