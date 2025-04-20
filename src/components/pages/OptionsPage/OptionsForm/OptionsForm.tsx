@@ -21,6 +21,7 @@ const OptionsForm = ({
       <fieldset className="flex gap-2">
         <input
           type="checkbox"
+          className="accent-pink-primary"
           checked={mirrored}
           onChange={handleMirroredChange}
         />
