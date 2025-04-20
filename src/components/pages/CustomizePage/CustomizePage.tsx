@@ -87,6 +87,7 @@ const CustomizePage = ({
           ))}
         </fieldset>
         <button
+          type="button"
           disabled={Object.keys(downloadableImageRef).length === 0}
           onClick={handleDownloadImage}
         >
