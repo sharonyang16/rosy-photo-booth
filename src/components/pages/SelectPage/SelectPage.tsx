@@ -1,5 +1,5 @@
 import { Layout, PhotoboothState } from "@/types/photobooth";
-import { DndContext, DragEndEvent } from "@dnd-kit/core";
+import { DndContext, DragEndEvent, useSensors } from "@dnd-kit/core";
 import DraggableImage from "./DraggableImage";
 import DroppableImage from "./DroppableImage";
 import StripLayout from "@/components/StripLayout/StripLayout";
@@ -15,6 +15,8 @@ type SelectPageProps = {
   setPhotoboothState: React.Dispatch<React.SetStateAction<PhotoboothState>>;
   handleDragEnd: (event: DragEndEvent) => void;
   handleClearSelected: () => void;
+  handleClickAddPicture: (src: string) => void;
+  sensors: ReturnType<typeof useSensors>;
 };
 
 const SelectPage = ({
@@ -25,12 +27,13 @@ const SelectPage = ({
   setPhotoboothState,
   handleDragEnd,
   handleClearSelected,
+  handleClickAddPicture,
+  sensors,
 }: SelectPageProps) => {
-  console.log(selectedPictures.some((picture) => !picture));
   return (
     <PageLayout pageHeading="Choose your pictures">
       <div className="col-span-full">
-        <DndContext onDragEnd={handleDragEnd}>
+        <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
           <div className="w-full grid grid-cols-2 gap-16">
             <PaperContainer>
               <StripLayout layout={layout} className="bg-white">
@@ -57,6 +60,7 @@ const SelectPage = ({
                       height: pictureSize.height / 2.5,
                       width: pictureSize.width / 2.5,
                     }}
+                    handleClickAddPicture={handleClickAddPicture}
                   />
                 ))}
               </div>

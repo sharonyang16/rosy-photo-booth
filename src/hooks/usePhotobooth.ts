@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Webcam from "react-webcam";
 import { PhotoboothState, Layout } from "../types/photobooth";
-import { orientationToClass, PICTURE_COUNT, DEFAULT_OPTIONS } from "@/types/constants";
-import { DragEndEvent } from "@dnd-kit/core";
-
+import {
+  orientationToClass,
+  PICTURE_COUNT,
+  DEFAULT_OPTIONS,
+} from "@/types/constants";
+import { DragEndEvent, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
 
 /**
  * TODO: write JSDoc Comment
@@ -123,6 +126,26 @@ export const usePhotobooth = () => {
     setSelectedPictures(Array(PICTURE_COUNT).fill(""));
   };
 
+  const handleClickAddPicture = (src: string) => {
+    const emptyIndex = selectedPictures.findIndex((picture) => picture === "");
+    if (emptyIndex !== -1) {
+      console.log("hi");
+      setSelectedPictures((prev) => {
+        const newSelectedPictures = [...prev];
+        newSelectedPictures[emptyIndex] = src;
+        return newSelectedPictures;
+      });
+    }
+  };
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 1,
+      },
+    })
+  );
+
   return {
     webcamRef,
     photoboothState,
@@ -142,5 +165,7 @@ export const usePhotobooth = () => {
     handleDragEnd,
     handleResetToDefault,
     handleClearSelected,
+    handleClickAddPicture,
+    sensors,
   };
 };
