@@ -29,6 +29,7 @@ const CustomizePage = ({
     setFilter,
     downloadableImageRef,
     handleDownloadImage,
+    handleRestart,
   } = useCustomize();
 
   const size = {
@@ -84,13 +85,16 @@ const CustomizePage = ({
             />
           ))}
         </fieldset>
-        <div>
+        <div className="flex gap-4">
+          <Button type="button" variant="secondary" onClick={handleRestart}>
+            restart
+          </Button>
           <Button
             type="button"
             disabled={Object.keys(downloadableImageRef).length === 0}
             onClick={handleDownloadImage}
           >
-            Download
+            download
           </Button>
         </div>
       </form>

@@ -32,6 +32,10 @@ export const useCustomize = () => {
       });
   };
 
+  const handleRestart = () => {
+    window.location.reload();
+  };
+
   return {
     backgroundColor,
     setBackgroundColor,
@@ -41,5 +45,6 @@ export const useCustomize = () => {
     filterClass,
     downloadableImageRef,
     handleDownloadImage,
+    handleRestart,
   };
 };
