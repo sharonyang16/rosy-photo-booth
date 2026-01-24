@@ -1,4 +1,3 @@
-import Button from "@/components/base/Button";
 import RadioButton from "@/components/base/RadioButton";
 import Typography from "@/components/base/Typography";
 import CroppedImage from "@/components/CroppedImage/CroppedImage";
@@ -56,46 +55,48 @@ const CustomizePage = ({
           ))}
         </StripLayout>
       </PaperContainer>
-      <form className="flex flex-col gap-4">
-        <fieldset>
-          <Typography variant="label" as="label">
-            background color
-          </Typography>
-          {BACKGROUND_COLORS.map((color) => (
-            <RadioButton
-              key={color}
-              label={color}
-              value={color}
-              checked={backgroundColor === color}
-              onChange={(e) => setBackgroundColor(e.target.value)}
-            />
-          ))}
-        </fieldset>
-        <fieldset>
-          <Typography variant="label" as="label">
-            filters
-          </Typography>
-          {FILTERS.map((filterName) => (
-            <RadioButton
-              key={filterName}
-              label={filterName}
-              value={filterName}
-              checked={filter === filterName}
-              onChange={(e) => setFilter(e.target.value)}
-            />
-          ))}
-        </fieldset>
+      <form className="flex flex-col justify-between py-16">
+        <div className="flex gap-8">
+          <fieldset>
+            <Typography variant="label" as="label">
+              background color
+            </Typography>
+            {BACKGROUND_COLORS.map((color) => (
+              <RadioButton
+                key={color}
+                label={color}
+                value={color}
+                checked={backgroundColor === color}
+                onChange={(e) => setBackgroundColor(e.target.value)}
+              />
+            ))}
+          </fieldset>
+          <fieldset>
+            <Typography variant="label" as="label">
+              filters
+            </Typography>
+            {FILTERS.map((filterName) => (
+              <RadioButton
+                key={filterName}
+                label={filterName}
+                value={filterName}
+                checked={filter === filterName}
+                onChange={(e) => setFilter(e.target.value)}
+              />
+            ))}
+          </fieldset>
+        </div>
         <div className="flex gap-4">
-          <Button type="button" variant="secondary" onClick={handleRestart}>
+          <button className="btn btn-outline btn-lg" onClick={handleRestart}>
             restart
-          </Button>
-          <Button
-            type="button"
+          </button>
+          <button
+            className="btn btn-primary btn-lg"
             disabled={Object.keys(downloadableImageRef).length === 0}
             onClick={handleDownloadImage}
           >
             download
-          </Button>
+          </button>
         </div>
       </form>
     </PageLayout>
