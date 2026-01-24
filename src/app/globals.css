@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default;
+}
 
 @theme {
   --color-pink-primary: oklch(0.83 0.0878 348.99);
