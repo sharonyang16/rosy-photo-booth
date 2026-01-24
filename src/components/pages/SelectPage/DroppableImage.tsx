@@ -15,7 +15,7 @@ const DroppableImage = ({ id, src, className, size }: DroppableImageProps) => {
   return (
     <div
       className={`flex justify-center items-center  ${className} ${
-        isOver ? "bg-gray-400" : "bg-gray-500"
+        isOver ? "bg-gray-300" : "bg-gray-400"
       }`}
       style={{ ...size }}
       ref={setNodeRef}
@@ -23,7 +23,7 @@ const DroppableImage = ({ id, src, className, size }: DroppableImageProps) => {
       {src ? (
         <CroppedImage src={src} size={size} alt="dropped picture preview" />
       ) : (
-        <Typography>{isOver ? "Drop Here!" : "No Image Selected"}</Typography>
+        <Typography>{isOver ? "Place Image Here" : "No Image Selected"}</Typography>
       )}
     </div>
   );

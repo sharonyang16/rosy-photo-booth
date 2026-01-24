@@ -2,7 +2,6 @@ import { LAYOUTS, ORIENTATIONS } from "@/types/constants";
 import { PhotoboothFormProps } from "../../../../types/photobooth";
 import RadioButton from "@/components/base/RadioButton";
 import Typography from "@/components/base/Typography";
-import Button from "@/components/base/Button";
 
 const OptionsForm = ({
   mirrored,
@@ -17,69 +16,84 @@ const OptionsForm = ({
   handleResetToDefault,
 }: PhotoboothFormProps) => {
   return (
-    <form className="flex flex-col gap-4">
-      <fieldset className="flex gap-2">
-        <input
-          type="checkbox"
-          className="accent-pink-primary"
-          checked={mirrored}
-          onChange={handleMirroredChange}
-        />
-        <Typography as="label">
-          mirrored
-        </Typography>
-      </fieldset>
-      <fieldset>
-        <Typography variant="label" as="label">
-          orientation
-        </Typography>
-        {ORIENTATIONS.map((orientationName) => (
-          <RadioButton
-            key={orientationName}
-            label={orientationName.toLowerCase()}
-            value={orientationName}
-            checked={orientation === orientationName}
-            onChange={(e) => handleOrientationChange(e)}
-          />
-        ))}
-      </fieldset>
-      <fieldset>
-        <Typography variant="label" as="label">
-          layout
-        </Typography>
-        {LAYOUTS.map((layoutName) => (
-          <RadioButton
-            key={layoutName}
-            label={layoutName.toLowerCase()}
-            value={layoutName}
-            checked={layout === layoutName}
-            onChange={(e) => handleLayoutChange(e)}
-          />
-        ))}
-      </fieldset>
+    <form className="flex flex-col gap-8">
+      <div className="flex gap-8">
+        <fieldset className="flex flex-col gap-2">
+          <Typography variant="label" as="label">
+            camera
+          </Typography>
+          <label className="label text-black">
+            <input
+              type="checkbox"
+              checked={mirrored}
+              className="checkbox checkbox-sm checkbox-primary"
+              onChange={handleMirroredChange}
+            />
+            mirrored
+          </label>
+        </fieldset>
 
-      <fieldset>
-        <Typography variant="label" as="label">
-          countdown
-        </Typography>
-        <div className="flex gap-2">
-          <input
-            type="number"
-            min="1"
-            max="10"
-            value={countdown}
-            onChange={(e) => handleCountdownChange(e)}
-          />
-          <Typography>seconds</Typography>
-        </div>
-      </fieldset>
-      <div className="flex gap-4">
-        <Button variant="secondary" onClick={handleResetToDefault}>
+        <fieldset className="flex flex-col gap-2">
+          <Typography variant="label" as="label">
+            orientation
+          </Typography>
+          {ORIENTATIONS.map((orientationName) => (
+            <RadioButton
+              key={orientationName}
+              label={orientationName.toLowerCase()}
+              value={orientationName}
+              checked={orientation === orientationName}
+              onChange={(e) => handleOrientationChange(e)}
+            />
+          ))}
+        </fieldset>
+
+        <fieldset className="flex flex-col gap-2">
+          <Typography variant="label" as="label">
+            layout
+          </Typography>
+          {LAYOUTS.map((layoutName) => (
+            <RadioButton
+              key={layoutName}
+              label={layoutName.toLowerCase()}
+              value={layoutName}
+              checked={layout === layoutName}
+              onChange={(e) => handleLayoutChange(e)}
+            />
+          ))}
+        </fieldset>
+
+        <fieldset className="flex flex-col gap-2">
+          <Typography variant="label" as="label">
+            countdown
+          </Typography>
+          <div className="flex items-end gap-2">
+            <input
+              type="number"
+              className="input"
+              min="1"
+              max="10"
+              value={countdown}
+              onChange={(e) => handleCountdownChange(e)}
+            />
+            <Typography>seconds</Typography>
+          </div>
+        </fieldset>
+      </div>
+      <div className="flex grow gap-4">
+        <button
+          className="btn btn-outline btn-lg grow"
+          onClick={handleResetToDefault}
+        >
           reset
-        </Button>
-        <Button type="submit" onClick={() => setPhotoboothState("CAPTURE")}>
+        </button>
+        <button
+          className="btn btn-primary btn-lg grow"
+          type="submit"
+          onClick={() => setPhotoboothState("CAPTURE")}
+        >
           start
-        </Button>
+        </button>
       </div>
     </form>
   );

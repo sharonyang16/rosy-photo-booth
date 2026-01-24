@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Webcam from "react-webcam";
 import { PhotoboothState, Layout } from "../types/photobooth";
 import {
@@ -6,11 +6,15 @@ import {
   PICTURE_COUNT,
   DEFAULT_OPTIONS,
 } from "@/types/constants";
-import { DragEndEvent, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
+import {
+  DragEndEvent,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
 
 /**
- * TODO: write JSDoc Comment
- * @returns
+ * Custom hook to manage photobooth state and functionality.
  */
 export const usePhotobooth = () => {
   const webcamRef = React.useRef<Webcam>({} as Webcam);
@@ -18,25 +22,33 @@ export const usePhotobooth = () => {
     useState<PhotoboothState>("OPTIONS");
   const [mirrored, setMirrored] = useState<boolean>(DEFAULT_OPTIONS.mirrored);
   const [orientation, setOrientation] = useState<string>(
-    DEFAULT_OPTIONS.orientation
+    DEFAULT_OPTIONS.orientation,
   );
   const [pictureSize, setPictureSize] = useState<{
     height: number;
     width: number;
-  }>({ height: 0, width: 0 });
+  }>({ height: 300, width: 400 });
   const [layout, setLayout] = useState<Layout>(DEFAULT_OPTIONS.layout);
   const [countdown, setCountdown] = useState<number>(DEFAULT_OPTIONS.countdown);
   const [currentCountdown, setCurrentCountdown] = useState<number>(
-    DEFAULT_OPTIONS.countdown
+    DEFAULT_OPTIONS.countdown,
   );
   const [pictures, setPictures] = useState<string[]>([]);
   const [selectedPictures, setSelectedPictures] = useState<string[]>(
-    Array(PICTURE_COUNT).fill("")
+    Array(PICTURE_COUNT).fill(""),
   );
 
   const capture = React.useCallback(() => {
     return webcamRef.current?.getScreenshot();
   }, [webcamRef]);
+
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    audioRef.current = new Audio(
+      "https://cdn.freesound.org/previews/624/624935_12172648-lq.mp3",
+    );
+  }, []);
 
   useEffect(() => {
     const hasMorePicturesLeft = pictures.length < PICTURE_COUNT * 2;
@@ -45,11 +57,13 @@ export const usePhotobooth = () => {
       if (hasMorePicturesLeft) {
         let intervalId: string | number | NodeJS.Timeout | undefined;
 
-        if (currentCountdown > 0) {
+        if (currentCountdown > -1) {
           intervalId = setInterval(() => {
             setCurrentCountdown((prevSeconds) => prevSeconds - 1);
           }, 1000);
         } else {
+          audioRef.current?.play();
+
           clearInterval(intervalId);
           const imageSrc = capture();
           if (imageSrc) {
@@ -68,8 +82,8 @@ export const usePhotobooth = () => {
 
   useEffect(() => {
     const size = orientationToClass.get(orientation) || {
-      height: 0,
-      width: 0,
+      height: 300,
+      width: 400,
     };
     setPictureSize({
       height: size.height,
@@ -143,7 +157,7 @@ export const usePhotobooth = () => {
       activationConstraint: {
         distance: 1,
       },
-    })
+    }),
   );
 
   return {
