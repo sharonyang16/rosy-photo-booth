@@ -14,8 +14,7 @@ import {
 } from "@dnd-kit/core";
 
 /**
- * TODO: write JSDoc Comment
- * @returns
+ * Custom hook to manage photobooth state and functionality.
  */
 export const usePhotobooth = () => {
   const webcamRef = React.useRef<Webcam>({} as Webcam);

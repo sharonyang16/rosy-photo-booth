@@ -2,6 +2,9 @@ import { useState, useRef, useEffect } from "react";
 import { toPng } from "html-to-image";
 import { backgroundColorToClass, filterToClass } from "@/types/constants";
 
+/**
+ * Custom hook to manage customization options for final strip.
+ */
 export const useCustomize = () => {
   const [backgroundColor, setBackgroundColor] = useState("white");
   const [backgroundColorClass, setBackgroundColorClass] = useState("bg-white");
@@ -22,7 +25,7 @@ export const useCustomize = () => {
       .then((dataUrl) => {
         const link = document.createElement("a");
         link.download = `rosy-photo-booth-${new Date().toLocaleDateString(
-          "en-US"
+          "en-US",
         )}.png`;
         link.href = dataUrl;
         link.click();
