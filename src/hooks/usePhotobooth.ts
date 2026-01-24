@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Webcam from "react-webcam";
 import { PhotoboothState, Layout } from "../types/photobooth";
 import {
@@ -43,6 +43,14 @@ export const usePhotobooth = () => {
     return webcamRef.current?.getScreenshot();
   }, [webcamRef]);
 
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    audioRef.current = new Audio(
+      "https://cdn.freesound.org/previews/624/624935_12172648-lq.mp3",
+    );
+  }, []);
+
   useEffect(() => {
     const hasMorePicturesLeft = pictures.length < PICTURE_COUNT * 2;
 
@@ -55,6 +63,8 @@ export const usePhotobooth = () => {
             setCurrentCountdown((prevSeconds) => prevSeconds - 1);
           }, 1000);
         } else {
+          audioRef.current?.play();
+
           clearInterval(intervalId);
           const imageSrc = capture();
           if (imageSrc) {
