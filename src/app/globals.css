@@ -13,7 +13,7 @@
   --foreground: #000000;
 }
 
-body {
+html {
   background: #f8c9df;
   background: linear-gradient(
     0deg,
