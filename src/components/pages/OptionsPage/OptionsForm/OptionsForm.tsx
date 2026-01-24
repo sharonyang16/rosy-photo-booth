@@ -2,7 +2,6 @@ import { LAYOUTS, ORIENTATIONS } from "@/types/constants";
 import { PhotoboothFormProps } from "../../../../types/photobooth";
 import RadioButton from "@/components/base/RadioButton";
 import Typography from "@/components/base/Typography";
-import Button from "@/components/base/Button";
 
 const OptionsForm = ({
   mirrored,
@@ -19,16 +18,22 @@ const OptionsForm = ({
   return (
     <form className="flex flex-col gap-8">
       <div className="flex gap-8">
-        <fieldset className="flex gap-2">
-          <input
-            type="checkbox"
-            className="accent-pink-primary"
-            checked={mirrored}
-            onChange={handleMirroredChange}
-          />
-          <Typography as="label">mirrored</Typography>
+        <fieldset className="flex flex-col gap-2">
+          <Typography variant="label" as="label">
+            camera
+          </Typography>
+          <label className="label text-black">
+            <input
+              type="checkbox"
+              checked={mirrored}
+              className="checkbox checkbox-sm checkbox-primary"
+              onChange={handleMirroredChange}
+            />
+            mirrored
+          </label>
         </fieldset>
-        <fieldset>
+
+        <fieldset className="flex flex-col gap-2">
           <Typography variant="label" as="label">
             orientation
           </Typography>
@@ -42,7 +47,8 @@ const OptionsForm = ({
             />
           ))}
         </fieldset>
-        <fieldset>
+
+        <fieldset className="flex flex-col gap-2">
           <Typography variant="label" as="label">
             layout
           </Typography>
@@ -57,13 +63,14 @@ const OptionsForm = ({
           ))}
         </fieldset>
 
-        <fieldset>
+        <fieldset className="flex flex-col gap-2">
           <Typography variant="label" as="label">
             countdown
           </Typography>
-          <div className="flex gap-2">
+          <div className="flex items-end gap-2">
             <input
               type="number"
+              className="input"
               min="1"
               max="10"
               value={countdown}
@@ -74,12 +81,19 @@ const OptionsForm = ({
         </fieldset>
       </div>
       <div className="flex grow gap-4">
-        <Button variant="secondary" onClick={handleResetToDefault}>
+        <button
+          className="btn btn-outline btn-lg grow"
+          onClick={handleResetToDefault}
+        >
           reset
-        </Button>
-        <Button type="submit" onClick={() => setPhotoboothState("CAPTURE")}>
+        </button>
+        <button
+          className="btn btn-primary btn-lg grow"
+          type="submit"
+          onClick={() => setPhotoboothState("CAPTURE")}
+        >
           start
-        </Button>
+        </button>
       </div>
     </form>
   );
