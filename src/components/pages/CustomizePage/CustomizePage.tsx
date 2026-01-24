@@ -55,8 +55,8 @@ const CustomizePage = ({
           ))}
         </StripLayout>
       </PaperContainer>
-      <form className="flex flex-col justify-between py-16">
-        <div className="flex gap-8">
+      <div className="flex flex-col justify-between py-16">
+        <form className="flex gap-8">
           <fieldset>
             <Typography variant="label" as="label">
               background color
@@ -85,9 +85,13 @@ const CustomizePage = ({
               />
             ))}
           </fieldset>
-        </div>
+        </form>
         <div className="flex gap-4">
-          <button className="btn btn-outline btn-lg" onClick={handleRestart}>
+          <button
+            className="btn btn-outline btn-lg"
+            onClick={handleRestart}
+            disabled={true}
+          >
             restart
           </button>
           <button
@@ -98,7 +102,7 @@ const CustomizePage = ({
             download
           </button>
         </div>
-      </form>
+      </div>
     </PageLayout>
   );
 };
