@@ -1,9 +1,8 @@
 import Webcam from "react-webcam";
 import OptionsForm from "./OptionsForm/OptionsForm";
 import { PhotoboothFormProps } from "../../../types/photobooth";
-import PageLayout from "@/components/Layout/PageLayout";
+
 import Camera from "@/components/Camera/Camera";
-import PaperContainer from "@/components/Layout/PaperContainer";
 
 const OptionsPage = ({
   webcamRef,
@@ -23,10 +22,13 @@ const OptionsPage = ({
   pictureSize: { height: number; width: number };
 } & PhotoboothFormProps) => {
   return (
-    <PageLayout pageHeading="Options">
-      <PaperContainer>
+    <div className="flex flex-col items-center">
+      <div
+        className="flex justify-center items-center"
+        style={{ height: `${Math.max(size.height, size.width) + 50}px` }}
+      >
         <Camera ref={webcamRef} size={size} mirrored={mirrored} />
-      </PaperContainer>
+      </div>
 
       <OptionsForm
         mirrored={mirrored}
@@ -40,7 +42,7 @@ const OptionsPage = ({
         setPhotoboothState={setPhotoboothState}
         handleResetToDefault={handleResetToDefault}
       />
-    </PageLayout>
+    </div>
   );
 };
 
