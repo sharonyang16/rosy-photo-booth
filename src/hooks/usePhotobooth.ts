@@ -6,7 +6,12 @@ import {
   PICTURE_COUNT,
   DEFAULT_OPTIONS,
 } from "@/types/constants";
-import { DragEndEvent, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
+import {
+  DragEndEvent,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
 
 /**
  * TODO: write JSDoc Comment
@@ -18,20 +23,20 @@ export const usePhotobooth = () => {
     useState<PhotoboothState>("OPTIONS");
   const [mirrored, setMirrored] = useState<boolean>(DEFAULT_OPTIONS.mirrored);
   const [orientation, setOrientation] = useState<string>(
-    DEFAULT_OPTIONS.orientation
+    DEFAULT_OPTIONS.orientation,
   );
   const [pictureSize, setPictureSize] = useState<{
     height: number;
     width: number;
-  }>({ height: 0, width: 0 });
+  }>({ height: 300, width: 400 });
   const [layout, setLayout] = useState<Layout>(DEFAULT_OPTIONS.layout);
   const [countdown, setCountdown] = useState<number>(DEFAULT_OPTIONS.countdown);
   const [currentCountdown, setCurrentCountdown] = useState<number>(
-    DEFAULT_OPTIONS.countdown
+    DEFAULT_OPTIONS.countdown,
   );
   const [pictures, setPictures] = useState<string[]>([]);
   const [selectedPictures, setSelectedPictures] = useState<string[]>(
-    Array(PICTURE_COUNT).fill("")
+    Array(PICTURE_COUNT).fill(""),
   );
 
   const capture = React.useCallback(() => {
@@ -68,8 +73,8 @@ export const usePhotobooth = () => {
 
   useEffect(() => {
     const size = orientationToClass.get(orientation) || {
-      height: 0,
-      width: 0,
+      height: 300,
+      width: 400,
     };
     setPictureSize({
       height: size.height,
@@ -143,7 +148,7 @@ export const usePhotobooth = () => {
       activationConstraint: {
         distance: 1,
       },
-    })
+    }),
   );
 
   return {
