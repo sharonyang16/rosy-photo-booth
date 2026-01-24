@@ -1,9 +1,8 @@
 import Webcam from "react-webcam";
 import { PICTURE_COUNT } from "@/types/constants";
 import Typography from "@/components/base/Typography";
-import PageLayout from "@/components/Layout/PageLayout";
 import Camera from "@/components/Camera/Camera";
-import PaperContainer from "@/components/Layout/PaperContainer";
+
 type CapturePageProps = {
   webcamRef: React.RefObject<Webcam>;
   pictureSize: { height: number; width: number };
@@ -20,20 +19,37 @@ const CapturePage = ({
   pictures,
 }: CapturePageProps) => {
   return (
-    <PageLayout pageHeading="Capture">
-      <PaperContainer>
-        <div className="flex flex-col gap-4 items-center">
-          <Camera ref={webcamRef} size={size} mirrored={mirrored} />
-          <div className="flex justify-center items-center p-4 bg-gray-200 size-min w-16 h-16 rounded-lg">
-            <Typography>{currentCountdown === 0 ? "Go!" : currentCountdown}</Typography>
+    <div className="flex flex-col items-center">
+      <div
+        className="flex items-center"
+        style={{ height: `${Math.max(size.height, size.width) + 50}px` }}
+      >
+        <div className="flex flex-col gap-4 items-center justify-end">
+          <div className="flex w-full gap-2">
+            <Typography variant="label">Pictures Remaining: </Typography>
+            <Typography>{PICTURE_COUNT * 2 - pictures.length}</Typography>
           </div>
+          <Camera ref={webcamRef} size={size} mirrored={mirrored} />
         </div>
-      </PaperContainer>
-      <div className="flex gap-2">
-        <Typography variant="label">Pictures Remaining: </Typography>
-        <Typography>{PICTURE_COUNT * 2 - pictures.length}</Typography>
       </div>
-    </PageLayout>
+
+      <div className="bg-primary rounded-box text-neutral-content flex flex-col p-2">
+        <span className="countdown font-mono text-6xl text-primary-content">
+          <span
+            style={
+              {
+                "--value": currentCountdown,
+                "--digits": 2,
+              } as React.CSSProperties
+            }
+            aria-live="polite"
+            aria-label={currentCountdown.toString()}
+          >
+            {currentCountdown}
+          </span>
+        </span>
+      </div>
+    </div>
   );
 };
 

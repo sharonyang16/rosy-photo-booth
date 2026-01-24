@@ -45,7 +45,7 @@ export const usePhotobooth = () => {
       if (hasMorePicturesLeft) {
         let intervalId: string | number | NodeJS.Timeout | undefined;
 
-        if (currentCountdown > 0) {
+        if (currentCountdown > -1) {
           intervalId = setInterval(() => {
             setCurrentCountdown((prevSeconds) => prevSeconds - 1);
           }, 1000);
