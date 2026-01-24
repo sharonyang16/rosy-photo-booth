@@ -143,7 +143,6 @@ export const usePhotobooth = () => {
   const handleClickAddPicture = (src: string) => {
     const emptyIndex = selectedPictures.findIndex((picture) => picture === "");
     if (emptyIndex !== -1) {
-      console.log("hi");
       setSelectedPictures((prev) => {
         const newSelectedPictures = [...prev];
         newSelectedPictures[emptyIndex] = src;
